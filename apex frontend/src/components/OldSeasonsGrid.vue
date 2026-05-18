@@ -210,6 +210,7 @@ const toggleOldTreasure = (seasonStr: string) => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1;
 }
 
 .quick-actions-bar {
@@ -244,7 +245,8 @@ const toggleOldTreasure = (seasonStr: string) => {
 
 /* Seasons Scrollable Grid */
 .scrollable-grid {
-  max-height: 480px;
+  flex: 1;
+  min-height: 480px;
   overflow-y: auto;
   padding: 0.25rem 1rem 1.5rem 0.25rem;
 }
