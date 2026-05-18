@@ -50,7 +50,7 @@ onUnmounted(() => {
         />
         <div class="logo-text">
           <h1>APEX LEGENDS</h1>
-          <p class="subtitle">PACKS CALCULATOR (2026)</p>
+          <p class="subtitle">โปรแกรมคำนวณ apex pack</p>
         </div>
       </div>
       <div class="actions-area">
