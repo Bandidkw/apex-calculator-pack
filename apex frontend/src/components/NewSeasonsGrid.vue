@@ -130,7 +130,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  Premium
+                  Premium (950 Coins)
                 </button>
                 <button
                   class="btn-option option-ultimate"
@@ -256,7 +256,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  Premium
+                  Premium (950 Coins)
                 </button>
                 <button
                   class="btn-option option-ultimate"
