@@ -19,6 +19,21 @@ const onMiscInput = (event: Event) => {
   if (isNaN(val) || val < 0) val = 0;
   state.miscPacks = val;
 };
+
+// Custom level adjustment
+const adjustLevel = (amount: number) => {
+  let val = state.playerLevel + amount;
+  if (val < 1) val = 1;
+  if (val > 2000) val = 2000;
+  state.playerLevel = val;
+};
+
+// Custom misc packs adjustment
+const adjustMisc = (amount: number) => {
+  let val = state.miscPacks + amount;
+  if (val < 0) val = 0;
+  state.miscPacks = val;
+};
 </script>
 
 <template>
@@ -41,43 +56,114 @@ const onMiscInput = (event: Event) => {
     </h3>
 
     <div class="inputs-stack">
-      <!-- Player Level Field -->
+      <!-- Player Level Field with Custom Stepper Buttons -->
       <div class="form-group">
         <label for="player-level" class="form-label">
           <span>เลเวลตัวละครของคุณ (Player Level)</span>
           <span class="badge">สูงสุด 2000</span>
         </label>
-        <div class="input-with-limit">
-          <input
-            type="number"
-            id="player-level"
-            :value="state.playerLevel"
-            @input="onLevelInput"
-            min="1"
-            max="2000"
-            class="form-input text-highlight"
-          />
-          <span class="limit-indicator">LV. {{ state.playerLevel }}</span>
+        
+        <div class="custom-numeric-picker">
+          <button
+            type="button"
+            class="picker-btn"
+            @click="adjustLevel(-1)"
+            :disabled="state.playerLevel <= 1"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+          
+          <div class="input-container">
+            <input
+              type="number"
+              id="player-level"
+              :value="state.playerLevel"
+              @input="onLevelInput"
+              min="1"
+              max="2000"
+              class="form-input text-highlight text-center"
+            />
+            <span class="limit-indicator">LV. {{ state.playerLevel }}</span>
+          </div>
+
+          <button
+            type="button"
+            class="picker-btn"
+            @click="adjustLevel(1)"
+            :disabled="state.playerLevel >= 2000"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
         </div>
-        <p class="input-tip">
+
+        <!-- Quick Level Presets -->
+        <div class="preset-buttons">
+          <button type="button" class="preset-btn" @click="adjustLevel(10)">+10</button>
+          <button type="button" class="preset-btn" @click="adjustLevel(100)">+100</button>
+          <button type="button" class="preset-btn" @click="adjustLevel(500)">+500</button>
+          <button type="button" class="preset-btn preset-max" @click="state.playerLevel = 2000">MAX</button>
+        </div>
+
+        <p class="input-tip" style="margin-top: 0.25rem">
           คำนวณอัตโนมัติตามระดับ Prestige 1 - 3 (เลเวลสะสมเต็มจะได้ 349 กล่อง)
         </p>
       </div>
 
-      <!-- Misc Packs Field -->
+      <!-- Misc Packs Field with Custom Stepper Buttons -->
       <div class="form-group">
         <label for="misc-packs" class="form-label">
           <span>กล่องกิจกรรม / ซื้อเพิ่มจากร้านค้า (Miscellaneous Packs)</span>
         </label>
-        <input
-          type="number"
-          id="misc-packs"
-          :value="state.miscPacks"
-          @input="onMiscInput"
-          min="0"
-          class="form-input text-highlight"
-        />
-        <p class="input-tip">
+        
+        <div class="custom-numeric-picker">
+          <button
+            type="button"
+            class="picker-btn"
+            @click="adjustMisc(-1)"
+            :disabled="state.miscPacks <= 0"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+
+          <div class="input-container">
+            <input
+              type="number"
+              id="misc-packs"
+              :value="state.miscPacks"
+              @input="onMiscInput"
+              min="0"
+              class="form-input text-highlight text-center"
+            />
+          </div>
+
+          <button
+            type="button"
+            class="picker-btn"
+            @click="adjustMisc(1)"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Quick Misc Presets -->
+        <div class="preset-buttons">
+          <button type="button" class="preset-btn" @click="adjustMisc(5)">+5</button>
+          <button type="button" class="preset-btn" @click="adjustMisc(10)">+10</button>
+          <button type="button" class="preset-btn" @click="adjustMisc(50)">+50</button>
+          <button type="button" class="preset-btn preset-reset" @click="state.miscPacks = 0">ล้าง</button>
+        </div>
+
+        <p class="input-tip" style="margin-top: 0.25rem">
           กล่องจาก Event, โค้ดแลกฟรี, หรือ Twitch Prime Gaming
         </p>
       </div>
@@ -171,8 +257,89 @@ const onMiscInput = (event: Event) => {
   font-size: 0.7rem;
 }
 
-.input-with-limit {
+/* Custom Numeric Picker Styles */
+.custom-numeric-picker {
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.custom-numeric-picker:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 70, 85, 0.15);
+}
+
+.picker-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: none;
+  color: var(--text-secondary);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.picker-btn:hover:not(:disabled) {
+  background: rgba(255, 70, 85, 0.1);
+  color: var(--color-primary);
+}
+
+.picker-btn:active:not(:disabled) {
+  background: rgba(255, 70, 85, 0.2);
+  transform: scale(0.95);
+}
+
+.picker-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.picker-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.input-container {
+  flex: 1;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container .form-input {
+  border: none;
+  background: transparent;
+  text-align: center;
+  height: 44px;
+  padding: 0;
+  border-radius: 0;
+  width: 100%;
+}
+
+.input-container .form-input:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Hide standard HTML5 number input spinners */
+.input-container input[type="number"]::-webkit-outer-spin-button,
+.input-container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-container input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .limit-indicator {
@@ -196,6 +363,46 @@ const onMiscInput = (event: Event) => {
 .input-tip {
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+/* Presets wrapper styling */
+.preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.preset-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-gaming);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.25rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.preset-btn:hover {
+  background: rgba(255, 70, 85, 0.08);
+  border-color: rgba(255, 70, 85, 0.2);
+  color: white;
+}
+
+.preset-btn.preset-max:hover {
+  background: rgba(255, 176, 31, 0.12);
+  border-color: rgba(255, 176, 31, 0.3);
+  color: var(--color-gold);
+}
+
+.preset-btn.preset-reset:hover {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.3);
+  color: #fca5a5;
 }
 
 .info-rules-card {
