@@ -6,7 +6,7 @@ import {
   type OldSeason,
 } from "../composables/useTracker";
 
-const { state, setPlayedAllOld, setPremiumAllOld } = useTracker();
+const { state, setPlayedAllOld, setPremiumAllOld, setTreasureAllOld } = useTracker();
 
 const getOldSeason = (seasonNo: number | string): OldSeason => {
   return state.seasonsData[seasonNo.toString()] as OldSeason;
@@ -73,6 +73,18 @@ const toggleOldTreasure = (seasonStr: string) => {
           @click="setPremiumAllOld(true)"
         >
           ซื้อพรีเมียมทุกซีซั่น
+        </button>
+        <button
+          class="btn btn-gold btn-sm"
+          @click="setTreasureAllOld(true)"
+        >
+          เก็บ Treasure ครบทุกซีซั่น
+        </button>
+        <button
+          class="btn btn-secondary btn-sm"
+          @click="setTreasureAllOld(false)"
+        >
+          ล้าง Treasure ทั้งหมด
         </button>
         <button class="btn btn-danger btn-sm" @click="setPlayedAllOld(false)">
           ไม่เล่นทุกซีซั่น

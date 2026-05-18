@@ -366,6 +366,19 @@ export function useTracker() {
     });
   };
 
+  const setTreasureAllOld = (completed: boolean) => {
+    Object.keys(state.seasonsData).forEach((key) => {
+      const seasonNo = parseInt(key, 10);
+      if (isOldSeason(seasonNo)) {
+        const oldData = state.seasonsData[key] as OldSeason;
+        oldData.completedTreasure = completed;
+        if (completed && !oldData.played) {
+          oldData.played = true;
+        }
+      }
+    });
+  };
+
   const setPremiumAllNew = (premiumType: "none" | "premium" | "ultimate") => {
     Object.keys(state.seasonsData).forEach((key) => {
       const seasonNo = parseInt(key, 10);
@@ -405,5 +418,6 @@ export function useTracker() {
     setPremiumAllOld,
     setPlayedAllOld,
     setPremiumAllNew,
+    setTreasureAllOld,
   };
 }
