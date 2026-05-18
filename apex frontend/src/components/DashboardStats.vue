@@ -25,16 +25,37 @@ const { state, levelPacks, seasonsPacks, totalPacks, guaranteeProgress } =
           ข้อมูลบันทึกอัตโนมัติ
         </p>
       </div>
-      <div class="total-badge" :style="state.hasHeirloomBefore ? 'display: flex; gap: 1rem; align-items: center; text-align: left;' : ''">
+      <div
+        class="total-badge"
+        :style="
+          state.hasHeirloomBefore
+            ? 'display: flex; gap: 1rem; align-items: center; text-align: left;'
+            : ''
+        "
+      >
         <div :style="state.hasHeirloomBefore ? 'text-align: right;' : ''">
-          <span class="label">{{ state.hasHeirloomBefore ? 'นับรอบการันตีถัดไป' : 'กล่องสะสมทั้งหมด' }}</span>
-          <span class="number" :class="{ 'text-gold': guaranteeProgress.reached }"
-            >{{ guaranteeProgress.basePacks }} <span class="max-val">/ 500</span></span
+          <span class="label">{{
+            state.hasHeirloomBefore ? "นับรอบการันตีถัดไป" : "กล่องสะสมทั้งหมด"
+          }}</span>
+          <span
+            class="number"
+            :class="{ 'text-gold': guaranteeProgress.reached }"
+            >{{ guaranteeProgress.basePacks }}
+            <span class="max-val">/ 500</span></span
           >
         </div>
-        <div v-if="state.hasHeirloomBefore" style="border-left: 1px solid var(--border-color); padding-left: 1rem; text-align: left;">
+        <div
+          v-if="state.hasHeirloomBefore"
+          style="
+            border-left: 1px solid var(--border-color);
+            padding-left: 1rem;
+            text-align: left;
+          "
+        >
           <span class="label">สะสมรวมทั้งหมด</span>
-          <span class="number" style="color: var(--text-secondary); font-size: 1.5rem;"
+          <span
+            class="number"
+            style="color: var(--text-secondary); font-size: 1.5rem"
             >{{ totalPacks }}</span
           >
         </div>
@@ -175,7 +196,7 @@ const { state, levelPacks, seasonsPacks, totalPacks, guaranteeProgress } =
           </span>
           <span class="stat-lbl">{{
             guaranteeProgress.reached
-              ? "สามารถแลก Heirloom ได้ทันที!"
+              ? "ได้ Heirloom แน่นอน!"
               : "เหลืออีกกี่กล่องจะครบการันตี"
           }}</span>
         </div>
