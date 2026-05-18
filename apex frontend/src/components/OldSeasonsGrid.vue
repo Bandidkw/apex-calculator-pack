@@ -244,7 +244,7 @@ const toggleOldTreasure = (seasonStr: string) => {
 .scrollable-grid {
   max-height: 480px;
   overflow-y: auto;
-  padding-right: 0.5rem;
+  padding: 0.25rem 1rem 0.25rem 0.25rem;
 }
 
 .seasons-grid {

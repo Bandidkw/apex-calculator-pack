@@ -55,7 +55,10 @@ const adjustHeirloomPack = (amount: number) => {
 
 <template>
   <div class="left-control-panel glass-panel">
-    <h3 class="panel-title" style="display: flex; align-items: center; gap: 0.5rem">
+    <h3
+      class="panel-title"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
       <svg
         fill="none"
         stroke="currentColor"
@@ -79,7 +82,7 @@ const adjustHeirloomPack = (amount: number) => {
           <span>เลเวลตัวละครของคุณ (Player Level)</span>
           <span class="badge">สูงสุด 2000</span>
         </label>
-        
+
         <div class="custom-numeric-picker">
           <button
             type="button"
@@ -87,11 +90,18 @@ const adjustHeirloomPack = (amount: number) => {
             @click="adjustLevel(-1)"
             :disabled="state.playerLevel <= 1"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </button>
-          
+
           <div class="input-container">
             <input
               type="number"
@@ -111,7 +121,14 @@ const adjustHeirloomPack = (amount: number) => {
             @click="adjustLevel(1)"
             :disabled="state.playerLevel >= 2000"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
@@ -120,10 +137,22 @@ const adjustHeirloomPack = (amount: number) => {
 
         <!-- Quick Level Presets -->
         <div class="preset-buttons">
-          <button type="button" class="preset-btn" @click="adjustLevel(10)">+10</button>
-          <button type="button" class="preset-btn" @click="adjustLevel(100)">+100</button>
-          <button type="button" class="preset-btn" @click="adjustLevel(500)">+500</button>
-          <button type="button" class="preset-btn preset-max" @click="state.playerLevel = 2000">MAX</button>
+          <button type="button" class="preset-btn" @click="adjustLevel(10)">
+            +10
+          </button>
+          <button type="button" class="preset-btn" @click="adjustLevel(100)">
+            +100
+          </button>
+          <button type="button" class="preset-btn" @click="adjustLevel(500)">
+            +500
+          </button>
+          <button
+            type="button"
+            class="preset-btn preset-max"
+            @click="state.playerLevel = 2000"
+          >
+            MAX
+          </button>
         </div>
 
         <p class="input-tip" style="margin-top: 0.25rem">
@@ -136,7 +165,7 @@ const adjustHeirloomPack = (amount: number) => {
         <label for="misc-packs" class="form-label">
           <span>กล่องกิจกรรม / ซื้อเพิ่มจากร้านค้า (Miscellaneous Packs)</span>
         </label>
-        
+
         <div class="custom-numeric-picker">
           <button
             type="button"
@@ -144,7 +173,14 @@ const adjustHeirloomPack = (amount: number) => {
             @click="adjustMisc(-1)"
             :disabled="state.miscPacks <= 0"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </button>
@@ -160,12 +196,15 @@ const adjustHeirloomPack = (amount: number) => {
             />
           </div>
 
-          <button
-            type="button"
-            class="picker-btn"
-            @click="adjustMisc(1)"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <button type="button" class="picker-btn" @click="adjustMisc(1)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
@@ -174,10 +213,22 @@ const adjustHeirloomPack = (amount: number) => {
 
         <!-- Quick Misc Presets -->
         <div class="preset-buttons">
-          <button type="button" class="preset-btn" @click="adjustMisc(5)">+5</button>
-          <button type="button" class="preset-btn" @click="adjustMisc(10)">+10</button>
-          <button type="button" class="preset-btn" @click="adjustMisc(50)">+50</button>
-          <button type="button" class="preset-btn preset-reset" @click="state.miscPacks = 0">ล้าง</button>
+          <button type="button" class="preset-btn" @click="adjustMisc(5)">
+            +5
+          </button>
+          <button type="button" class="preset-btn" @click="adjustMisc(10)">
+            +10
+          </button>
+          <button type="button" class="preset-btn" @click="adjustMisc(50)">
+            +50
+          </button>
+          <button
+            type="button"
+            class="preset-btn preset-reset"
+            @click="state.miscPacks = 0"
+          >
+            ล้าง
+          </button>
         </div>
 
         <p class="input-tip" style="margin-top: 0.25rem">
@@ -187,8 +238,14 @@ const adjustHeirloomPack = (amount: number) => {
 
       <!-- Heirloom Setting Field -->
       <div class="form-group heirloom-group">
-        <div class="heirloom-checkbox-wrapper" @click="state.hasHeirloomBefore = !state.hasHeirloomBefore">
-          <div class="heirloom-checkbox" :class="{ active: state.hasHeirloomBefore }">
+        <div
+          class="heirloom-checkbox-wrapper"
+          @click="state.hasHeirloomBefore = !state.hasHeirloomBefore"
+        >
+          <div
+            class="heirloom-checkbox"
+            :class="{ active: state.hasHeirloomBefore }"
+          >
             <svg
               v-if="state.hasHeirloomBefore"
               viewBox="0 0 24 24"
@@ -203,7 +260,9 @@ const adjustHeirloomPack = (amount: number) => {
           </div>
           <div class="heirloom-label">
             <span class="main-lbl">เคยได้ Heirloom Shards แล้ว?</span>
-            <span class="sub-lbl text-red-glow">รีเซ็ตการนับรอบการันตีใหม่</span>
+            <span class="sub-lbl text-red-glow"
+              >รีเซ็ตการนับรอบการันตีใหม่</span
+            >
           </div>
         </div>
 
@@ -211,7 +270,14 @@ const adjustHeirloomPack = (amount: number) => {
           <div v-if="state.hasHeirloomBefore" class="heirloom-input-block">
             <label class="form-label" for="last-heirloom-pack">
               <span>ได้ชิ้นล่าสุดที่กล่องสะสมที่เท่าไหร่?</span>
-              <span class="badge text-gold" style="color: var(--color-gold); background: rgba(255, 176, 31, 0.15);">สูงสุด {{ totalPacks }}</span>
+              <span
+                class="badge text-gold"
+                style="
+                  color: var(--color-gold);
+                  background: rgba(255, 176, 31, 0.15);
+                "
+                >สูงสุด {{ totalPacks }}</span
+              >
             </label>
             <div class="custom-numeric-picker">
               <button
@@ -220,7 +286,14 @@ const adjustHeirloomPack = (amount: number) => {
                 @click="adjustHeirloomPack(-1)"
                 :disabled="state.lastHeirloomPackCount <= 0"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
               </button>
@@ -243,7 +316,14 @@ const adjustHeirloomPack = (amount: number) => {
                 @click="adjustHeirloomPack(1)"
                 :disabled="state.lastHeirloomPackCount >= totalPacks"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <line x1="12" y1="5" x2="12" y2="19"></line>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
@@ -252,14 +332,33 @@ const adjustHeirloomPack = (amount: number) => {
 
             <!-- Quick Heirloom Presets -->
             <div class="preset-buttons">
-              <button type="button" class="preset-btn" @click="adjustHeirloomPack(10)">+10</button>
-              <button type="button" class="preset-btn" @click="adjustHeirloomPack(100)">+100</button>
-              <button type="button" class="preset-btn preset-max" @click="state.lastHeirloomPackCount = totalPacks">กล่องล่าสุด</button>
+              <button
+                type="button"
+                class="preset-btn"
+                @click="adjustHeirloomPack(10)"
+              >
+                +10
+              </button>
+              <button
+                type="button"
+                class="preset-btn"
+                @click="adjustHeirloomPack(100)"
+              >
+                +100
+              </button>
+              <button
+                type="button"
+                class="preset-btn preset-max"
+                @click="state.lastHeirloomPackCount = totalPacks"
+              >
+                กล่องล่าสุด
+              </button>
             </div>
 
             <p class="input-tip alert-tip">
-              * การันตีรอบถัดไปจะเริ่มนับจากกล่องที่ {{ state.lastHeirloomPackCount + 1 }} 
-              (นับแล้ว {{ Math.max(0, totalPacks - state.lastHeirloomPackCount) }} กล่อง)
+              * การันตีรอบถัดไปจะเริ่มนับจากกล่องที่
+              {{ state.lastHeirloomPackCount + 1 }} (นับแล้ว
+              {{ Math.max(0, totalPacks - state.lastHeirloomPackCount) }} กล่อง)
             </p>
           </div>
         </transition>
@@ -293,18 +392,56 @@ const adjustHeirloomPack = (amount: number) => {
         </svg>
         กฎการได้รับกล่องจากเลเวล (Player Level Rules):
       </h4>
-      <ul style="display: flex; flex-direction: column; gap: 0.4rem;">
-        <li><strong>เลเวล 2 - 20:</strong> ได้ 1 กล่องต่อ 1 เลเวล (รวม 19 กล่อง)</li>
-        <li><strong>เลเวล 22 - 300:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (รวม 140 กล่อง)</li>
-        <li><strong>เลเวล 305 - 500:</strong> ได้ 1 กล่องทุกๆ 5 เลเวล (รวม 40 กล่อง)</li>
-        <li style="border-top: 1px dashed rgba(255, 255, 255, 0.08); padding-top: 0.4rem; margin-top: 0.2rem;">
-          <strong>เลเวล Prestige (501 - 2000):</strong> รอบละ 500 เลเวล (รีเซ็ตทุกขั้นสะสม 113 × 3 = 339 กล่อง)
-          <ul style="margin-left: 1rem; margin-top: 0.25rem; list-style: circle; display: flex; flex-direction: column; gap: 0.2rem;">
-            <li style="font-size: 0.72rem;"><strong>เลเวล 1 - 100 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10 กล่อง)</li>
-            <li style="font-size: 0.72rem;"><strong>เลเวล 101 - 200 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12 กล่อง)</li>
-            <li style="font-size: 0.72rem;"><strong>เลเวล 201 - 300 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16 กล่อง)</li>
-            <li style="font-size: 0.72rem;"><strong>เลเวล 301 - 400 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25 กล่อง)</li>
-            <li style="font-size: 0.72rem;"><strong>เลเวล 401 - 500 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50 กล่อง)</li>
+      <ul style="display: flex; flex-direction: column; gap: 0.4rem">
+        <li>
+          <strong>เลเวล 2 - 20:</strong> ได้ 1 กล่องต่อ 1 เลเวล (รวม 19 กล่อง)
+        </li>
+        <li>
+          <strong>เลเวล 22 - 300:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (รวม 140
+          กล่อง)
+        </li>
+        <li>
+          <strong>เลเวล 305 - 500:</strong> ได้ 1 กล่องทุกๆ 5 เลเวล (รวม 40
+          กล่อง)
+        </li>
+        <li
+          style="
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-top: 0.4rem;
+            margin-top: 0.2rem;
+          "
+        >
+          <strong>เลเวล จุติ (501 - 2000):</strong> รอบละ 500 เลเวล
+          <ul
+            style="
+              margin-left: 1rem;
+              margin-top: 0.25rem;
+              list-style: circle;
+              display: flex;
+              flex-direction: column;
+              gap: 0.2rem;
+            "
+          >
+            <li style="font-size: 0.72rem">
+              <strong>เลเวล 1 - 100 :</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10
+              กล่อง)
+            </li>
+            <li style="font-size: 0.72rem">
+              <strong>เลเวล 101 - 200 :</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12
+              กล่อง)
+            </li>
+            <li style="font-size: 0.72rem">
+              <strong>เลเวล 201 - 300 :</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16
+              กล่อง)
+            </li>
+            <li style="font-size: 0.72rem">
+              <strong>เลเวล 301 - 400 :</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25
+              กล่อง)
+            </li>
+            <li style="font-size: 0.72rem">
+              <strong>เลเวล 401 - 500 :</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50
+              กล่อง)
+            </li>
           </ul>
         </li>
       </ul>
@@ -369,7 +506,9 @@ const adjustHeirloomPack = (amount: number) => {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .custom-numeric-picker:focus-within {
