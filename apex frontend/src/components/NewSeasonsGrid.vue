@@ -59,227 +59,229 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
     </div>
 
     <!-- Seasons Grid S22+ -->
-    <div class="seasons-grid scrollable-grid">
-      <div
-        v-for="season in SEASONS_LIST.filter((s) => !isOldSeason(s))"
-        :key="season"
-        class="season-card new-season-card"
-      >
-        <div class="season-card-header">
-          <span class="season-number">Season {{ season }}</span>
-          <span class="badge-era">2 Splits Era</span>
-        </div>
-
-        <div class="splits-wrapper">
-          <!-- SPLIT 1 -->
-          <div class="split-section">
-            <div class="split-header">
-              <span>SPLIT 1</span>
-            </div>
-            <div class="split-options-grid">
-              <!-- Dropdown/Buttons for Split 1 Selection -->
-              <button
-                class="btn-option"
-                :class="{ active: !getNewSeason(season).s1Played }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s1Played = false;
-                    s.s1Premium = false;
-                    s.s1UltimatePlus = false;
-                  }
-                "
-              >
-                ไม่ได้เล่น
-              </button>
-              <button
-                class="btn-option"
-                :class="{
-                  active:
-                    getNewSeason(season).s1Played &&
-                    !getNewSeason(season).s1Premium &&
-                    !getNewSeason(season).s1UltimatePlus,
-                }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s1Played = true;
-                    s.s1Premium = false;
-                    s.s1UltimatePlus = false;
-                  }
-                "
-              >
-                ไม่ได้ซื้อพาส
-              </button>
-              <button
-                class="btn-option option-premium"
-                :class="{ active: getNewSeason(season).s1Premium }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s1Played = true;
-                    s.s1Premium = true;
-                    s.s1UltimatePlus = false;
-                  }
-                "
-              >
-                Premium
-              </button>
-              <button
-                class="btn-option option-ultimate"
-                :class="{ active: getNewSeason(season).s1UltimatePlus }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s1Played = true;
-                    s.s1Premium = false;
-                    s.s1UltimatePlus = true;
-                  }
-                "
-              >
-                Ultimate+
-              </button>
-            </div>
-
-            <!-- BP Level Slider Split 1 -->
-            <div
-              class="bp-level-control"
-              v-if="getNewSeason(season).s1Played"
-            >
-              <div class="slider-header">
-                <label>เลเวล Split 1:</label>
-                <span class="text-gold"
-                  >{{ getNewSeason(season).s1BpLevel ?? 60 }} / 60</span
-                >
-              </div>
-              <input
-                type="range"
-                min="1"
-                max="60"
-                :value="getNewSeason(season).s1BpLevel ?? 60"
-                @input="
-                  (e) =>
-                    (getNewSeason(season).s1BpLevel = parseInt(
-                      (e.target as HTMLInputElement).value,
-                      10,
-                    ))
-                "
-                class="bp-slider"
-              />
-            </div>
+    <div class="scrollable-grid">
+      <div class="seasons-grid">
+        <div
+          v-for="season in SEASONS_LIST.filter((s) => !isOldSeason(s))"
+          :key="season"
+          class="season-card new-season-card"
+        >
+          <div class="season-card-header">
+            <span class="season-number">Season {{ season }}</span>
+            <span class="badge-era">2 Splits Era</span>
           </div>
 
-          <!-- SPLIT 2 -->
-          <div class="split-section">
-            <div class="split-header">
-              <span>SPLIT 2</span>
-            </div>
-            <div class="split-options-grid">
-              <!-- Dropdown/Buttons for Split 2 Selection -->
-              <button
-                class="btn-option"
-                :class="{ active: !getNewSeason(season).s2Played }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s2Played = false;
-                    s.s2Premium = false;
-                    s.s2UltimatePlus = false;
-                  }
-                "
+          <div class="splits-wrapper">
+            <!-- SPLIT 1 -->
+            <div class="split-section">
+              <div class="split-header">
+                <span>SPLIT 1</span>
+              </div>
+              <div class="split-options-grid">
+                <!-- Dropdown/Buttons for Split 1 Selection -->
+                <button
+                  class="btn-option"
+                  :class="{ active: !getNewSeason(season).s1Played }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s1Played = false;
+                      s.s1Premium = false;
+                      s.s1UltimatePlus = false;
+                    }
+                  "
+                >
+                  ไม่ได้เล่น
+                </button>
+                <button
+                  class="btn-option"
+                  :class="{
+                    active:
+                      getNewSeason(season).s1Played &&
+                      !getNewSeason(season).s1Premium &&
+                      !getNewSeason(season).s1UltimatePlus,
+                  }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s1Played = true;
+                      s.s1Premium = false;
+                      s.s1UltimatePlus = false;
+                    }
+                  "
+                >
+                  ไม่ได้ซื้อพาส
+                </button>
+                <button
+                  class="btn-option option-premium"
+                  :class="{ active: getNewSeason(season).s1Premium }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s1Played = true;
+                      s.s1Premium = true;
+                      s.s1UltimatePlus = false;
+                    }
+                  "
+                >
+                  Premium
+                </button>
+                <button
+                  class="btn-option option-ultimate"
+                  :class="{ active: getNewSeason(season).s1UltimatePlus }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s1Played = true;
+                      s.s1Premium = false;
+                      s.s1UltimatePlus = true;
+                    }
+                  "
+                >
+                  Ultimate+
+                </button>
+              </div>
+
+              <!-- BP Level Slider Split 1 -->
+              <div
+                class="bp-level-control"
+                v-if="getNewSeason(season).s1Played"
               >
-                ไม่ได้เล่น
-              </button>
-              <button
-                class="btn-option"
-                :class="{
-                  active:
-                    getNewSeason(season).s2Played &&
-                    !getNewSeason(season).s2Premium &&
-                    !getNewSeason(season).s2UltimatePlus,
-                }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s2Played = true;
-                    s.s2Premium = false;
-                    s.s2UltimatePlus = false;
-                  }
-                "
-              >
-                ไม่ได้ซื้อพาส
-              </button>
-              <button
-                class="btn-option option-premium"
-                :class="{ active: getNewSeason(season).s2Premium }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s2Played = true;
-                    s.s2Premium = true;
-                    s.s2UltimatePlus = false;
-                  }
-                "
-              >
-                Premium
-              </button>
-              <button
-                class="btn-option option-ultimate"
-                :class="{ active: getNewSeason(season).s2UltimatePlus }"
-                @click="
-                  () => {
-                    const s = state.seasonsData[
-                      season.toString()
-                    ] as NewSeason;
-                    s.s2Played = true;
-                    s.s2Premium = false;
-                    s.s2UltimatePlus = true;
-                  }
-                "
-              >
-                Ultimate+
-              </button>
+                <div class="slider-header">
+                  <label>เลเวล Split 1:</label>
+                  <span class="text-gold"
+                    >{{ getNewSeason(season).s1BpLevel ?? 60 }} / 60</span
+                  >
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="60"
+                  :value="getNewSeason(season).s1BpLevel ?? 60"
+                  @input="
+                    (e) =>
+                      (getNewSeason(season).s1BpLevel = parseInt(
+                        (e.target as HTMLInputElement).value,
+                        10,
+                      ))
+                  "
+                  class="bp-slider"
+                />
+              </div>
             </div>
 
-            <!-- BP Level Slider Split 2 -->
-            <div
-              class="bp-level-control"
-              v-if="getNewSeason(season).s2Played"
-            >
-              <div class="slider-header">
-                <label>เลเวล Split 2:</label>
-                <span class="text-gold"
-                  >{{ getNewSeason(season).s2BpLevel ?? 60 }} / 60</span
-                >
+            <!-- SPLIT 2 -->
+            <div class="split-section">
+              <div class="split-header">
+                <span>SPLIT 2</span>
               </div>
-              <input
-                type="range"
-                min="1"
-                max="60"
-                :value="getNewSeason(season).s2BpLevel ?? 60"
-                @input="
-                  (e) =>
-                    (getNewSeason(season).s2BpLevel = parseInt(
-                      (e.target as HTMLInputElement).value,
-                      10,
-                    ))
-                "
-                class="bp-slider"
-              />
+              <div class="split-options-grid">
+                <!-- Dropdown/Buttons for Split 2 Selection -->
+                <button
+                  class="btn-option"
+                  :class="{ active: !getNewSeason(season).s2Played }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s2Played = false;
+                      s.s2Premium = false;
+                      s.s2UltimatePlus = false;
+                    }
+                  "
+                >
+                  ไม่ได้เล่น
+                </button>
+                <button
+                  class="btn-option"
+                  :class="{
+                    active:
+                      getNewSeason(season).s2Played &&
+                      !getNewSeason(season).s2Premium &&
+                      !getNewSeason(season).s2UltimatePlus,
+                  }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s2Played = true;
+                      s.s2Premium = false;
+                      s.s2UltimatePlus = false;
+                    }
+                  "
+                >
+                  ไม่ได้ซื้อพาส
+                </button>
+                <button
+                  class="btn-option option-premium"
+                  :class="{ active: getNewSeason(season).s2Premium }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s2Played = true;
+                      s.s2Premium = true;
+                      s.s2UltimatePlus = false;
+                    }
+                  "
+                >
+                  Premium
+                </button>
+                <button
+                  class="btn-option option-ultimate"
+                  :class="{ active: getNewSeason(season).s2UltimatePlus }"
+                  @click="
+                    () => {
+                      const s = state.seasonsData[
+                        season.toString()
+                      ] as NewSeason;
+                      s.s2Played = true;
+                      s.s2Premium = false;
+                      s.s2UltimatePlus = true;
+                    }
+                  "
+                >
+                  Ultimate+
+                </button>
+              </div>
+
+              <!-- BP Level Slider Split 2 -->
+              <div
+                class="bp-level-control"
+                v-if="getNewSeason(season).s2Played"
+              >
+                <div class="slider-header">
+                  <label>เลเวล Split 2:</label>
+                  <span class="text-gold"
+                    >{{ getNewSeason(season).s2BpLevel ?? 60 }} / 60</span
+                  >
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="60"
+                  :value="getNewSeason(season).s2BpLevel ?? 60"
+                  @input="
+                    (e) =>
+                      (getNewSeason(season).s2BpLevel = parseInt(
+                        (e.target as HTMLInputElement).value,
+                        10,
+                      ))
+                  "
+                  class="bp-slider"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -329,7 +331,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
 .scrollable-grid {
   max-height: 480px;
   overflow-y: auto;
-  padding: 0.25rem 1rem 0.25rem 0.25rem;
+  padding: 0.25rem 1rem 1.5rem 0.25rem;
 }
 
 .seasons-grid {

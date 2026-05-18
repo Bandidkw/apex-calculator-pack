@@ -87,115 +87,117 @@ const toggleOldTreasure = (seasonStr: string) => {
     </div>
 
     <!-- Seasons Grid S1 - S21 -->
-    <div class="seasons-grid scrollable-grid">
-      <div
-        v-for="season in SEASONS_LIST.filter(isOldSeason)"
-        :key="season"
-        class="season-card"
-        :class="{ 'card-active': getOldSeason(season).played }"
-      >
-        <div class="season-card-header">
-          <span class="season-number">Season {{ season }}</span>
-        </div>
-
-        <div class="season-card-controls">
-          <!-- Checkbox: Played -->
-          <div
-            class="checkbox-card"
-            :class="{ active: getOldSeason(season).played }"
-            @click="toggleOldPlayed(season.toString())"
-          >
-            <div class="checkbox-inner">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-            <span class="lbl">เล่นซีซั่นนี้</span>
+    <div class="scrollable-grid">
+      <div class="seasons-grid">
+        <div
+          v-for="season in SEASONS_LIST.filter(isOldSeason)"
+          :key="season"
+          class="season-card"
+          :class="{ 'card-active': getOldSeason(season).played }"
+        >
+          <div class="season-card-header">
+            <span class="season-number">Season {{ season }}</span>
           </div>
 
-          <!-- Checkbox: Premium -->
-          <div
-            class="checkbox-card"
-            :class="{
-              active: getOldSeason(season).isPremium,
-              disabled: !getOldSeason(season).played,
-            }"
-            @click="toggleOldPremium(season.toString())"
-          >
-            <div class="checkbox-inner">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+          <div class="season-card-controls">
+            <!-- Checkbox: Played -->
+            <div
+              class="checkbox-card"
+              :class="{ active: getOldSeason(season).played }"
+              @click="toggleOldPlayed(season.toString())"
+            >
+              <div class="checkbox-inner">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <span class="lbl">เล่นซีซั่นนี้</span>
             </div>
-            <span class="lbl">ซื้อพรีเมียมพาส</span>
-          </div>
 
-          <!-- Checkbox: Treasure -->
-          <div
-            class="checkbox-card"
-            :class="{
-              'active-gold': getOldSeason(season).completedTreasure,
-              disabled: !getOldSeason(season).played,
-            }"
-            @click="toggleOldTreasure(season.toString())"
-          >
-            <div class="checkbox-inner">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+            <!-- Checkbox: Premium -->
+            <div
+              class="checkbox-card"
+              :class="{
+                active: getOldSeason(season).isPremium,
+                disabled: !getOldSeason(season).played,
+              }"
+              @click="toggleOldPremium(season.toString())"
+            >
+              <div class="checkbox-inner">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <span class="lbl">ซื้อพรีเมียมพาส</span>
             </div>
-            <span class="lbl text-gold">เก็บ Treasure Pack ครบ (+1)</span>
-          </div>
 
-          <!-- BP Level Slider Old -->
-          <div
-            class="bp-level-control"
-            v-if="getOldSeason(season).played"
-          >
-            <div class="slider-header">
-              <label>เลเวล Battle Pass:</label>
-              <span class="text-gold"
-                >{{ getOldSeason(season).bpLevel ?? 110 }} / 110</span
-              >
+            <!-- Checkbox: Treasure -->
+            <div
+              class="checkbox-card"
+              :class="{
+                'active-gold': getOldSeason(season).completedTreasure,
+                disabled: !getOldSeason(season).played,
+              }"
+              @click="toggleOldTreasure(season.toString())"
+            >
+              <div class="checkbox-inner">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <span class="lbl text-gold">เก็บ Treasure Pack ครบ (+1)</span>
             </div>
-            <input
-              type="range"
-              min="1"
-              max="110"
-              :value="getOldSeason(season).bpLevel ?? 110"
-              @input="
-                (e) =>
-                  (getOldSeason(season).bpLevel = parseInt(
-                    (e.target as HTMLInputElement).value,
-                    10,
-                  ))
-              "
-              class="bp-slider"
-            />
+
+            <!-- BP Level Slider Old -->
+            <div
+              class="bp-level-control"
+              v-if="getOldSeason(season).played"
+            >
+              <div class="slider-header">
+                <label>เลเวล Battle Pass:</label>
+                <span class="text-gold"
+                  >{{ getOldSeason(season).bpLevel ?? 110 }} / 110</span
+                >
+              </div>
+              <input
+                type="range"
+                min="1"
+                max="110"
+                :value="getOldSeason(season).bpLevel ?? 110"
+                @input="
+                  (e) =>
+                    (getOldSeason(season).bpLevel = parseInt(
+                      (e.target as HTMLInputElement).value,
+                      10,
+                    ))
+                "
+                class="bp-slider"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -244,7 +246,7 @@ const toggleOldTreasure = (seasonStr: string) => {
 .scrollable-grid {
   max-height: 480px;
   overflow-y: auto;
-  padding: 0.25rem 1rem 0.25rem 0.25rem;
+  padding: 0.25rem 1rem 1.5rem 0.25rem;
 }
 
 .seasons-grid {
