@@ -295,7 +295,6 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  flex: 1;
 }
 
 .quick-actions-bar {
@@ -330,8 +329,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
 
 /* Seasons Scrollable Grid */
 .scrollable-grid {
-  flex: 1;
-  min-height: 480px;
+  max-height: 540px;
   overflow-y: auto;
   padding: 0.25rem 1rem 1.5rem 0.25rem;
 }
