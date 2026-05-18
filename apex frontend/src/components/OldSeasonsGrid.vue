@@ -13,29 +13,25 @@ const getOldSeason = (seasonNo: number | string): OldSeason => {
   return state.seasonsData[seasonNo.toString()] as OldSeason;
 };
 
-// Season Helper Toggles
-const toggleOldPlayed = (seasonStr: string) => {
-  const season = state.seasonsData[seasonStr];
-  if ("played" in season) {
+const handleOldToggle = (seasonNo: number, type: 'played' | 'premium' | 'treasure') => {
+  if (!SEASON_MAPPINGS[seasonNo]) {
+    alert(`⚠️ ยังไม่มีข้อมูลทางการสำหรับ Season ${seasonNo}\nระบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`);
+    return;
+  }
+
+  const seasonStr = seasonNo.toString();
+  const season = state.seasonsData[seasonStr] as OldSeason;
+
+  if (type === 'played') {
     season.played = !season.played;
     if (!season.played) {
       season.isPremium = false;
       season.completedTreasure = false;
     }
-  }
-};
-
-const toggleOldPremium = (seasonStr: string) => {
-  const season = state.seasonsData[seasonStr];
-  if ("isPremium" in season && "played" in season) {
+  } else if (type === 'premium') {
     if (!season.played) season.played = true;
     season.isPremium = !season.isPremium;
-  }
-};
-
-const toggleOldTreasure = (seasonStr: string) => {
-  const season = state.seasonsData[seasonStr];
-  if ("completedTreasure" in season && "played" in season) {
+  } else if (type === 'treasure') {
     if (!season.played) season.played = true;
     season.completedTreasure = !season.completedTreasure;
   }
@@ -116,8 +112,11 @@ const toggleOldTreasure = (seasonStr: string) => {
             <!-- Checkbox: Played -->
             <div
               class="checkbox-card"
-              :class="{ active: getOldSeason(season).played }"
-              @click="toggleOldPlayed(season.toString())"
+              :class="{ 
+                active: getOldSeason(season).played,
+                locked: !SEASON_MAPPINGS[season]
+              }"
+              @click="handleOldToggle(season, 'played')"
             >
               <div class="checkbox-inner">
                 <svg
@@ -141,8 +140,9 @@ const toggleOldTreasure = (seasonStr: string) => {
               :class="{
                 active: getOldSeason(season).isPremium,
                 disabled: !getOldSeason(season).played,
+                locked: !SEASON_MAPPINGS[season]
               }"
-              @click="toggleOldPremium(season.toString())"
+              @click="handleOldToggle(season, 'premium')"
             >
               <div class="checkbox-inner">
                 <svg
@@ -166,8 +166,9 @@ const toggleOldTreasure = (seasonStr: string) => {
               :class="{
                 'active-gold': getOldSeason(season).completedTreasure,
                 disabled: !getOldSeason(season).played,
+                locked: !SEASON_MAPPINGS[season]
               }"
-              @click="toggleOldTreasure(season.toString())"
+              @click="handleOldToggle(season, 'treasure')"
             >
               <div class="checkbox-inner">
                 <svg
@@ -352,6 +353,12 @@ const toggleOldTreasure = (seasonStr: string) => {
 .checkbox-card.disabled {
   opacity: 0.3;
   pointer-events: none;
+}
+
+.checkbox-card.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
 }
 
 .checkbox-card .lbl {

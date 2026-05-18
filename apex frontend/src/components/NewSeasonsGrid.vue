@@ -12,6 +12,35 @@ const { state, setPremiumAllNew } = useTracker();
 const getNewSeason = (seasonNo: number | string): NewSeason => {
   return state.seasonsData[seasonNo.toString()] as NewSeason;
 };
+
+const handleSplitSelection = (season: number, split: 1 | 2, type: 'none' | 'no-pass' | 'premium' | 'ultimate') => {
+  const mapping = SEASON_MAPPINGS[season];
+  const hasData = split === 1 ? !!mapping?.split1 : !!mapping?.split2;
+
+  if (type !== 'none' && !hasData) {
+    alert(`⚠️ ยังไม่มีข้อมูลทางการสำหรับ Season ${season} Split ${split}\nระะบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`);
+    return;
+  }
+
+  const s = state.seasonsData[season.toString()] as NewSeason;
+  if (type === 'none') {
+    s[split === 1 ? 's1Played' : 's2Played'] = false;
+    s[split === 1 ? 's1Premium' : 's2Premium'] = false;
+    s[split === 1 ? 's1UltimatePlus' : 's2UltimatePlus'] = false;
+  } else if (type === 'no-pass') {
+    s[split === 1 ? 's1Played' : 's2Played'] = true;
+    s[split === 1 ? 's1Premium' : 's2Premium'] = false;
+    s[split === 1 ? 's1UltimatePlus' : 's2UltimatePlus'] = false;
+  } else if (type === 'premium') {
+    s[split === 1 ? 's1Played' : 's2Played'] = true;
+    s[split === 1 ? 's1Premium' : 's2Premium'] = true;
+    s[split === 1 ? 's1UltimatePlus' : 's2UltimatePlus'] = false;
+  } else if (type === 'ultimate') {
+    s[split === 1 ? 's1Played' : 's2Played'] = true;
+    s[split === 1 ? 's1Premium' : 's2Premium'] = false;
+    s[split === 1 ? 's1UltimatePlus' : 's2UltimatePlus'] = true;
+  }
+};
 </script>
 
 <template>
@@ -89,16 +118,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                 <button
                   class="btn-option"
                   :class="{ active: !getNewSeason(season).s1Played }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s1Played = false;
-                      s.s1Premium = false;
-                      s.s1UltimatePlus = false;
-                    }
-                  "
+                  @click="handleSplitSelection(season, 1, 'none')"
                 >
                   ไม่ได้เล่น (Not Played)
                 </button>
@@ -109,49 +129,29 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                       getNewSeason(season).s1Played &&
                       !getNewSeason(season).s1Premium &&
                       !getNewSeason(season).s1UltimatePlus,
+                    locked: !SEASON_MAPPINGS[season]?.split1
                   }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s1Played = true;
-                      s.s1Premium = false;
-                      s.s1UltimatePlus = false;
-                    }
-                  "
+                  @click="handleSplitSelection(season, 1, 'no-pass')"
                 >
                   ไม่ได้ซื้อพาส (No Pass)
                 </button>
                 <button
                   class="btn-option option-premium"
-                  :class="{ active: getNewSeason(season).s1Premium }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s1Played = true;
-                      s.s1Premium = true;
-                      s.s1UltimatePlus = false;
-                    }
-                  "
+                  :class="{ 
+                    active: getNewSeason(season).s1Premium,
+                    locked: !SEASON_MAPPINGS[season]?.split1
+                  }"
+                  @click="handleSplitSelection(season, 1, 'premium')"
                 >
                   Premium (950 Coins)
                 </button>
                 <button
                   class="btn-option option-ultimate"
-                  :class="{ active: getNewSeason(season).s1UltimatePlus }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s1Played = true;
-                      s.s1Premium = false;
-                      s.s1UltimatePlus = true;
-                    }
-                  "
+                  :class="{ 
+                    active: getNewSeason(season).s1UltimatePlus,
+                    locked: !SEASON_MAPPINGS[season]?.split1
+                  }"
+                  @click="handleSplitSelection(season, 1, 'ultimate')"
                 >
                   Ultimate / Ultimate+
                 </button>
@@ -221,16 +221,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                 <button
                   class="btn-option"
                   :class="{ active: !getNewSeason(season).s2Played }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s2Played = false;
-                      s.s2Premium = false;
-                      s.s2UltimatePlus = false;
-                    }
-                  "
+                  @click="handleSplitSelection(season, 2, 'none')"
                 >
                   ไม่ได้เล่น (Not Played)
                 </button>
@@ -241,49 +232,29 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                       getNewSeason(season).s2Played &&
                       !getNewSeason(season).s2Premium &&
                       !getNewSeason(season).s2UltimatePlus,
+                    locked: !SEASON_MAPPINGS[season]?.split2
                   }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s2Played = true;
-                      s.s2Premium = false;
-                      s.s2UltimatePlus = false;
-                    }
-                  "
+                  @click="handleSplitSelection(season, 2, 'no-pass')"
                 >
                   ไม่ได้ซื้อพาส (No Pass)
                 </button>
                 <button
                   class="btn-option option-premium"
-                  :class="{ active: getNewSeason(season).s2Premium }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s2Played = true;
-                      s.s2Premium = true;
-                      s.s2UltimatePlus = false;
-                    }
-                  "
+                  :class="{ 
+                    active: getNewSeason(season).s2Premium,
+                    locked: !SEASON_MAPPINGS[season]?.split2
+                  }"
+                  @click="handleSplitSelection(season, 2, 'premium')"
                 >
                   Premium (950 Coins)
                 </button>
                 <button
                   class="btn-option option-ultimate"
-                  :class="{ active: getNewSeason(season).s2UltimatePlus }"
-                  @click="
-                    () => {
-                      const s = state.seasonsData[
-                        season.toString()
-                      ] as NewSeason;
-                      s.s2Played = true;
-                      s.s2Premium = false;
-                      s.s2UltimatePlus = true;
-                    }
-                  "
+                  :class="{ 
+                    active: getNewSeason(season).s2UltimatePlus,
+                    locked: !SEASON_MAPPINGS[season]?.split2
+                  }"
+                  @click="handleSplitSelection(season, 2, 'ultimate')"
                 >
                   Ultimate / Ultimate+
                 </button>
@@ -502,6 +473,12 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
   background: rgba(255, 255, 255, 0.12);
   border-color: var(--text-primary);
   color: white;
+}
+
+.btn-option.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
 }
 
 .btn-option.option-premium.active {
