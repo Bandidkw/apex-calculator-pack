@@ -66,28 +66,28 @@ const toggleOldTreasure = (seasonStr: string) => {
       </span>
       <div class="buttons-group">
         <button class="btn btn-secondary btn-sm" @click="setPlayedAllOld(true)">
-          ไม่ได้ซื้อพาสทุกซีซั่น
+          พาสฟรีทั้งหมด
         </button>
         <button
           class="btn btn-secondary btn-sm"
           @click="setPremiumAllOld(true)"
         >
-          ซื้อพรีเมียมทุกซีซั่น
+          ซื้อพาสทั้งหมด
         </button>
         <button
           class="btn btn-gold btn-sm"
           @click="setTreasureAllOld(true)"
         >
-          เก็บ Treasure ครบทุกซีซั่น
+          Treasure ครบ
         </button>
         <button
           class="btn btn-secondary btn-sm"
           @click="setTreasureAllOld(false)"
         >
-          ล้าง Treasure ทั้งหมด
+          ล้าง Treasure
         </button>
         <button class="btn btn-danger btn-sm" @click="setPlayedAllOld(false)">
-          ไม่เล่นทุกซีซั่น
+          ไม่เล่นทั้งหมด
         </button>
       </div>
     </div>

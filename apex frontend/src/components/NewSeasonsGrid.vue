@@ -41,19 +41,19 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
           class="btn btn-secondary btn-sm"
           @click="setPremiumAllNew('none')"
         >
-          ไม่ได้ซื้อพาสทั้งหมด
+          พาสฟรีทั้งหมด
         </button>
         <button
           class="btn btn-secondary btn-sm"
           @click="setPremiumAllNew('premium')"
         >
-          ซื้อ Premium ทุก Split
+          ซื้อ Premium ทั้งหมด
         </button>
         <button
           class="btn btn-gold btn-sm"
           @click="setPremiumAllNew('ultimate')"
         >
-          ซื้อ Ultimate+ ทุก Split
+          ซื้อ Ultimate+ ทั้งหมด
         </button>
       </div>
     </div>
