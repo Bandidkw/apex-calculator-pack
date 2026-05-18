@@ -5,6 +5,7 @@ import {
   isOldSeason,
   type NewSeason,
 } from "../composables/useTracker";
+import { SEASON_MAPPINGS } from "../data/seasonMappings";
 
 const { state, setPremiumAllNew } = useTracker();
 
@@ -74,8 +75,14 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
           <div class="splits-wrapper">
             <!-- SPLIT 1 -->
             <div class="split-section">
-              <div class="split-header">
+              <div class="split-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <span>SPLIT 1</span>
+                <div v-if="!SEASON_MAPPINGS[season]?.split1" class="warning-badge" title="ยังไม่มีข้อมูลทางการ ใช้การคำนวณแบบสัดส่วน">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  ข้อมูลโดยประมาณ
+                </div>
               </div>
               <div class="split-options-grid">
                 <!-- Dropdown/Buttons for Split 1 Selection -->
@@ -200,8 +207,14 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
 
             <!-- SPLIT 2 -->
             <div class="split-section">
-              <div class="split-header">
+              <div class="split-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <span>SPLIT 2</span>
+                <div v-if="!SEASON_MAPPINGS[season]?.split2" class="warning-badge" title="ยังไม่มีข้อมูลทางการ ใช้การคำนวณแบบสัดส่วน">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  ข้อมูลโดยประมาณ
+                </div>
               </div>
               <div class="split-options-grid">
                 <!-- Dropdown/Buttons for Split 2 Selection -->
