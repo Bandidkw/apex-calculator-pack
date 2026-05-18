@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import {
   useTracker,
 } from "./composables/useTracker";
@@ -12,6 +12,27 @@ import NewSeasonsGrid from "./components/NewSeasonsGrid.vue";
 const { resetAll } = useTracker();
 
 const seasonEraTab = ref<"old" | "new">("old");
+
+const showBackToTop = ref(false);
+
+const handleScroll = () => {
+  showBackToTop.value = window.scrollY > 300;
+};
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
@@ -140,6 +161,31 @@ const seasonEraTab = ref<"old" | "new">("old");
         used.
       </p>
     </footer>
+
+    <!-- Back to Top Button -->
+    <transition name="fade">
+      <button
+        v-if="showBackToTop"
+        class="back-to-top-btn"
+        @click="scrollToTop"
+        title="กลับสู่ด้านบน"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          style="width: 1.4rem; height: 1.4rem"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          ></path>
+        </svg>
+      </button>
+    </transition>
   </div>
 </template>
 
@@ -288,5 +334,56 @@ const seasonEraTab = ref<"old" | "new">("old");
 
 .privacy-note {
   font-style: italic;
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(255, 70, 85, 0.4);
+  transition: all var(--transition-fast);
+  z-index: 999;
+}
+
+.back-to-top-btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.back-to-top-btn:hover {
+  background: white;
+  color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(255, 70, 85, 0.6);
+}
+
+.back-to-top-btn:hover svg {
+  transform: translateY(-2px);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0);
+}
+
+/* Fade transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
 }
 </style>
