@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import {
-  useTracker,
-} from "./composables/useTracker";
+import { useTracker } from "./composables/useTracker";
 import DashboardStats from "./components/DashboardStats.vue";
 import PlayerInfo from "./components/PlayerInfo.vue";
 import OldSeasonsGrid from "./components/OldSeasonsGrid.vue";
@@ -60,7 +58,7 @@ onUnmounted(() => {
           class="btn btn-danger btn-sm"
           @click="resetAll"
           title="Reset all data to default"
-          style="display: flex; align-items: center; gap: 0.35rem;"
+          style="display: flex; align-items: center; gap: 0.35rem"
         >
           <svg
             class="w-4 h-4"
@@ -372,7 +370,9 @@ onUnmounted(() => {
 /* Fade transition */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .fade-enter-from,

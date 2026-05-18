@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useTracker } from "../composables/useTracker";
 
 const { state, totalPacks } = useTracker();
+
+const showLevelRules = ref(false);
 
 // Local validation for player level
 const onLevelInput = (event: Event) => {
@@ -365,86 +368,106 @@ const adjustHeirloomPack = (amount: number) => {
       </div>
     </div>
 
-    <!-- Informational Rule Card -->
-    <div class="info-rules-card">
+    <!-- Informational Rule Card (Collapsible) -->
+    <div class="info-rules-card" :class="{ 'is-collapsed': !showLevelRules }">
       <h4
+        @click="showLevelRules = !showLevelRules"
         style="
           display: flex;
           align-items: center;
-          gap: 0.35rem;
+          justify-content: space-between;
           font-size: 0.9rem;
-          margin-bottom: 0.75rem;
           color: var(--text-primary);
+          cursor: pointer;
+          user-select: none;
+          margin-bottom: 0;
         "
+        :style="{ marginBottom: showLevelRules ? '0.75rem' : '0' }"
       >
+        <div style="display: flex; align-items: center; gap: 0.35rem;">
+          <svg
+            fill="none"
+            stroke="var(--color-primary)"
+            viewBox="0 0 24 24"
+            style="width: 1rem; height: 1rem"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+            ></path>
+          </svg>
+          <span style="font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;">กฎการได้รับกล่องจากเลเวล (Rules)</span>
+        </div>
         <svg
-          fill="none"
-          stroke="var(--color-primary)"
           viewBox="0 0 24 24"
-          style="width: 1rem; height: 1rem"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="width: 0.9rem; height: 0.9rem; transition: transform var(--transition-normal); color: var(--text-muted);"
+          :style="{ transform: showLevelRules ? 'rotate(180deg)' : 'rotate(0deg)' }"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-          ></path>
+          <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
-        กฎการได้รับกล่องจากเลเวล (Player Level Rules):
       </h4>
-      <ul style="display: flex; flex-direction: column; gap: 0.4rem">
-        <li>
-          <strong>เลเวล 2 - 20:</strong> ได้ 1 กล่องต่อ 1 เลเวล (รวม 19 กล่อง)
-        </li>
-        <li>
-          <strong>เลเวล 22 - 300:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (รวม 140
-          กล่อง)
-        </li>
-        <li>
-          <strong>เลเวล 305 - 500:</strong> ได้ 1 กล่องทุกๆ 5 เลเวล (รวม 40
-          กล่อง)
-        </li>
-        <li
-          style="
-            border-top: 1px dashed rgba(255, 255, 255, 0.08);
-            padding-top: 0.4rem;
-            margin-top: 0.2rem;
-          "
-        >
-          <strong>เลเวล จุติ (501 - 2000):</strong> รอบละ 500 เลเวล
-          <ul
+      <transition name="fade-slide">
+        <ul v-if="showLevelRules" style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.5rem;">
+          <li>
+            <strong>เลเวล 2 - 20:</strong> ได้ 1 กล่องต่อ 1 เลเวล (รวม 19 กล่อง)
+          </li>
+          <li>
+            <strong>เลเวล 22 - 300:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (รวม 140
+            กล่อง)
+          </li>
+          <li>
+            <strong>เลเวล 305 - 500:</strong> ได้ 1 กล่องทุกๆ 5 เลเวล (รวม 40
+            กล่อง)
+          </li>
+          <li
             style="
-              margin-left: 1rem;
-              margin-top: 0.25rem;
-              list-style: circle;
-              display: flex;
-              flex-direction: column;
-              gap: 0.2rem;
+              border-top: 1px dashed rgba(255, 255, 255, 0.08);
+              padding-top: 0.4rem;
+              margin-top: 0.2rem;
             "
           >
-            <li style="font-size: 0.72rem">
-              <strong>เลเวล 1 - 100 :</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10
-              กล่อง)
-            </li>
-            <li style="font-size: 0.72rem">
-              <strong>เลเวล 101 - 200 :</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12
-              กล่อง)
-            </li>
-            <li style="font-size: 0.72rem">
-              <strong>เลเวล 201 - 300 :</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16
-              กล่อง)
-            </li>
-            <li style="font-size: 0.72rem">
-              <strong>เลเวล 301 - 400 :</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25
-              กล่อง)
-            </li>
-            <li style="font-size: 0.72rem">
-              <strong>เลเวล 401 - 500 :</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50
-              กล่อง)
-            </li>
-          </ul>
-        </li>
-      </ul>
+            <strong>เลเวล จุติ (501 - 2000):</strong> รอบละ 500 เลเวล
+            <ul
+              style="
+                margin-left: 1rem;
+                margin-top: 0.25rem;
+                list-style: circle;
+                display: flex;
+                flex-direction: column;
+                gap: 0.2rem;
+              "
+            >
+              <li style="font-size: 0.72rem">
+                <strong>เลเวล 1 - 100 :</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10
+                กล่อง)
+              </li>
+              <li style="font-size: 0.72rem">
+                <strong>เลเวล 101 - 200 :</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12
+                กล่อง)
+              </li>
+              <li style="font-size: 0.72rem">
+                <strong>เลเวล 201 - 300 :</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16
+                กล่อง)
+              </li>
+              <li style="font-size: 0.72rem">
+                <strong>เลเวล 301 - 400 :</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25
+                กล่อง)
+              </li>
+              <li style="font-size: 0.72rem">
+                <strong>เลเวล 401 - 500 :</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50
+                กล่อง)
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </transition>
     </div>
   </div>
 </template>
@@ -654,6 +677,12 @@ const adjustHeirloomPack = (amount: number) => {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1rem;
+  transition: all var(--transition-normal);
+}
+
+.info-rules-card:hover {
+  border-color: rgba(255, 70, 85, 0.25);
+  background: rgba(255, 70, 85, 0.03);
 }
 
 .info-rules-card h4 {
