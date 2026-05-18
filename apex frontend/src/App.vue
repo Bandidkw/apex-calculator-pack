@@ -220,6 +220,7 @@ const seasonEraTab = ref<"old" | "new">("old");
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .panel-header-tabs {
