@@ -254,11 +254,12 @@ onUnmounted(() => {
   padding-bottom: 0.5rem;
 }
 
-/* Right Panel Style Details */
 .right-control-panel {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
   min-height: 0;
 }
 

@@ -371,7 +371,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
 
 /* Seasons Scrollable Grid */
 .scrollable-grid {
-  max-height: 500px;
+  max-height: 580px;
   overflow-y: auto;
   padding: 0.25rem 1rem 1.5rem 0.25rem;
 }
