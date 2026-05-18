@@ -93,7 +93,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  ไม่ได้เล่น
+                  ไม่ได้เล่น (Not Played)
                 </button>
                 <button
                   class="btn-option"
@@ -114,7 +114,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  ไม่ได้ซื้อพาส
+                  ไม่ได้ซื้อพาส (No Pass)
                 </button>
                 <button
                   class="btn-option option-premium"
@@ -156,7 +156,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                 v-if="getNewSeason(season).s1Played"
               >
                 <div class="slider-header" style="display: flex; justify-content: space-between; align-items: center;">
-                  <label>เลเวล Split 1:</label>
+                  <label>เลเวล Split 1 (Split 1 Level):</label>
                   <div class="bp-level-input-wrapper" style="display: flex; align-items: center; gap: 0.25rem;">
                     <input
                       type="number"
@@ -219,7 +219,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  ไม่ได้เล่น
+                  ไม่ได้เล่น (Not Played)
                 </button>
                 <button
                   class="btn-option"
@@ -240,7 +240,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  ไม่ได้ซื้อพาส
+                  ไม่ได้ซื้อพาส (No Pass)
                 </button>
                 <button
                   class="btn-option option-premium"
@@ -282,7 +282,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                 v-if="getNewSeason(season).s2Played"
               >
                 <div class="slider-header" style="display: flex; justify-content: space-between; align-items: center;">
-                  <label>เลเวล Split 2:</label>
+                  <label>เลเวล Split 2 (Split 2 Level):</label>
                   <div class="bp-level-input-wrapper" style="display: flex; align-items: center; gap: 0.25rem;">
                     <input
                       type="number"

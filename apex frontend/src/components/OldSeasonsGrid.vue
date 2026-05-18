@@ -125,7 +125,7 @@ const toggleOldTreasure = (seasonStr: string) => {
                   ></path>
                 </svg>
               </div>
-              <span class="lbl">เล่นซีซั่นนี้</span>
+              <span class="lbl">เล่นซีซั่นนี้ (Played)</span>
             </div>
 
             <!-- Checkbox: Premium -->
@@ -150,7 +150,7 @@ const toggleOldTreasure = (seasonStr: string) => {
                   ></path>
                 </svg>
               </div>
-              <span class="lbl">ซื้อพรีเมียมพาส</span>
+              <span class="lbl">ซื้อพรีเมียมพาส (Premium Pass)</span>
             </div>
 
             <!-- Checkbox: Treasure -->
@@ -175,7 +175,7 @@ const toggleOldTreasure = (seasonStr: string) => {
                   ></path>
                 </svg>
               </div>
-              <span class="lbl text-gold">เก็บ Treasure Pack ครบ (+1)</span>
+              <span class="lbl text-gold">เก็บ Treasure Pack ครบ (Treasure Pack) (+1)</span>
             </div>
 
             <!-- BP Level Slider Old -->
@@ -188,7 +188,7 @@ const toggleOldTreasure = (seasonStr: string) => {
                   align-items: center;
                 "
               >
-                <label>เลเวล Battle Pass:</label>
+                <label>เลเวล Battle Pass (BP Level):</label>
                 <div
                   class="bp-level-input-wrapper"
                   style="display: flex; align-items: center; gap: 0.25rem"
