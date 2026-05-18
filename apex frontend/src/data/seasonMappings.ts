@@ -137,4 +137,88 @@ export const SEASON_MAPPINGS: Record<number, SeasonPackMapping> = {
       maxLevel: 100,
     },
   },
+  23: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
+  24: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
+  25: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
+  26: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
+  27: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
+  28: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
+  29: {
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
 };
