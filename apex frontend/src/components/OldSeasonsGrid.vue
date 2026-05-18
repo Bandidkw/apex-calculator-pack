@@ -65,10 +65,7 @@ const toggleOldTreasure = (seasonStr: string) => {
         ปุ่มลัดซีซั่น 1 - 21:
       </span>
       <div class="buttons-group">
-        <button
-          class="btn btn-secondary btn-sm"
-          @click="setPlayedAllOld(true)"
-        >
+        <button class="btn btn-secondary btn-sm" @click="setPlayedAllOld(true)">
           ไม่ได้ซื้อพาสทุกซีซั่น
         </button>
         <button
@@ -77,10 +74,7 @@ const toggleOldTreasure = (seasonStr: string) => {
         >
           ซื้อพรีเมียมทุกซีซั่น
         </button>
-        <button
-          class="btn btn-danger btn-sm"
-          @click="setPlayedAllOld(false)"
-        >
+        <button class="btn btn-danger btn-sm" @click="setPlayedAllOld(false)">
           ไม่เล่นทุกซีซั่น
         </button>
       </div>
@@ -173,34 +167,53 @@ const toggleOldTreasure = (seasonStr: string) => {
             </div>
 
             <!-- BP Level Slider Old -->
-            <div
-              class="bp-level-control"
-              v-if="getOldSeason(season).played"
-            >
-              <div class="slider-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="bp-level-control" v-if="getOldSeason(season).played">
+              <div
+                class="slider-header"
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
                 <label>เลเวล Battle Pass:</label>
-                <div class="bp-level-input-wrapper" style="display: flex; align-items: center; gap: 0.25rem;">
+                <div
+                  class="bp-level-input-wrapper"
+                  style="display: flex; align-items: center; gap: 0.25rem"
+                >
                   <input
                     type="number"
                     min="1"
                     max="110"
                     :value="getOldSeason(season).bpLevel ?? 110"
-                    @input="(e) => {
-                      let val = parseInt((e.target as HTMLInputElement).value, 10);
-                      if (isNaN(val)) return;
-                      if (val < 1) val = 1;
-                      if (val > 110) val = 110;
-                      getOldSeason(season).bpLevel = val;
-                    }"
-                    @blur="(e) => {
-                      let val = parseInt((e.target as HTMLInputElement).value, 10);
-                      if (isNaN(val) || val < 1) val = 110;
-                      if (val > 110) val = 110;
-                      getOldSeason(season).bpLevel = val;
-                    }"
+                    @input="
+                      (e) => {
+                        let val = parseInt(
+                          (e.target as HTMLInputElement).value,
+                          10,
+                        );
+                        if (isNaN(val)) return;
+                        if (val < 1) val = 1;
+                        if (val > 110) val = 110;
+                        getOldSeason(season).bpLevel = val;
+                      }
+                    "
+                    @blur="
+                      (e) => {
+                        let val = parseInt(
+                          (e.target as HTMLInputElement).value,
+                          10,
+                        );
+                        if (isNaN(val) || val < 1) val = 110;
+                        if (val > 110) val = 110;
+                        getOldSeason(season).bpLevel = val;
+                      }
+                    "
                     class="bp-number-input"
                   />
-                  <span class="text-muted" style="font-size: 0.8rem;">/ 110</span>
+                  <span class="text-muted" style="font-size: 0.8rem"
+                    >/ 110</span
+                  >
                 </div>
               </div>
               <input
@@ -266,8 +279,7 @@ const toggleOldTreasure = (seasonStr: string) => {
 
 /* Seasons Scrollable Grid */
 .scrollable-grid {
-  flex: 1;
-  min-height: 0;
+  max-height: 580px;
   overflow-y: auto;
   padding: 0.25rem 1rem 1.5rem 0.25rem;
 }
