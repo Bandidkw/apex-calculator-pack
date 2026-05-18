@@ -177,11 +177,31 @@ const toggleOldTreasure = (seasonStr: string) => {
               class="bp-level-control"
               v-if="getOldSeason(season).played"
             >
-              <div class="slider-header">
+              <div class="slider-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <label>เลเวล Battle Pass:</label>
-                <span class="text-gold"
-                  >{{ getOldSeason(season).bpLevel ?? 110 }} / 110</span
-                >
+                <div class="bp-level-input-wrapper" style="display: flex; align-items: center; gap: 0.25rem;">
+                  <input
+                    type="number"
+                    min="1"
+                    max="110"
+                    :value="getOldSeason(season).bpLevel ?? 110"
+                    @input="(e) => {
+                      let val = parseInt((e.target as HTMLInputElement).value, 10);
+                      if (isNaN(val)) return;
+                      if (val < 1) val = 1;
+                      if (val > 110) val = 110;
+                      getOldSeason(season).bpLevel = val;
+                    }"
+                    @blur="(e) => {
+                      let val = parseInt((e.target as HTMLInputElement).value, 10);
+                      if (isNaN(val) || val < 1) val = 110;
+                      if (val > 110) val = 110;
+                      getOldSeason(season).bpLevel = val;
+                    }"
+                    class="bp-number-input"
+                  />
+                  <span class="text-muted" style="font-size: 0.8rem;">/ 110</span>
+                </div>
               </div>
               <input
                 type="range"
@@ -357,5 +377,37 @@ const toggleOldTreasure = (seasonStr: string) => {
 
 .bp-slider:focus {
   outline: none;
+}
+
+/* Precise Battle Pass Number Input */
+.bp-number-input {
+  width: 3rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-gold);
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.1rem 0.25rem;
+  text-align: center;
+  font-family: var(--font-gaming);
+  font-size: 0.8rem;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.bp-number-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 5px rgba(255, 70, 85, 0.3);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Remove spinners for number input */
+.bp-number-input::-webkit-outer-spin-button,
+.bp-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bp-number-input {
+  -moz-appearance: textfield;
 }
 </style>
