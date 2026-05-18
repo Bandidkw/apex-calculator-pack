@@ -20,7 +20,7 @@ const handleSplitSelection = (season: number, split: 1 | 2, type: 'none' | 'no-p
   const hasData = split === 1 ? !!mapping?.split1 : !!mapping?.split2;
 
   if (type !== 'none' && !hasData) {
-    addToast(`ยังไม่มีข้อมูลทางการสำหรับ Season ${season} Split ${split} ระบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`, "warning");
+    addToast(`ยังไม่มีข้อมูลทางการสำหรับ Season ${season} Split ${split}`, "warning");
     return;
   }
 
