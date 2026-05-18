@@ -466,7 +466,8 @@ const adjustHeirloomPack = (amount: number) => {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  height: fit-content;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .inputs-stack {
