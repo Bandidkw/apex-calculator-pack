@@ -74,10 +74,22 @@ export function calculateLevelPacks(level: number): number {
     packs += Math.floor((lvl500 - 300) / 5);
   }
 
-  // Level 501 - 2000: 1 pack every 10 levels (total 150 packs)
+  // Level 501 - 1000 (Prestige 1): 1 pack every 10 levels (total 50 packs)
   if (level > 500) {
+    const lvl1000 = Math.min(level, 1000);
+    packs += Math.floor((lvl1000 - 500) / 10);
+  }
+
+  // Level 1001 - 1500 (Prestige 2): 1 pack every 10 levels (total 50 packs)
+  if (level > 1000) {
+    const lvl1500 = Math.min(level, 1500);
+    packs += Math.floor((lvl1500 - 1000) / 10);
+  }
+
+  // Level 1501 - 2000 (Prestige 3): 1 pack every 10 levels (total 50 packs)
+  if (level > 1500) {
     const lvl2000 = Math.min(level, 2000);
-    packs += Math.floor((lvl2000 - 500) / 10);
+    packs += Math.floor((lvl2000 - 1500) / 10);
   }
 
   return packs;
