@@ -40,23 +40,16 @@ onUnmounted(() => {
     <!-- Header -->
     <header class="app-header container">
       <div class="logo-area">
-        <svg
-          class="apex-symbol"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--color-primary)"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <img
+          src="/apex-logo-skulls-transparent.png"
+          alt="Apex Legends Logo"
           style="
-            width: 2.2rem;
-            height: 2.2rem;
-            filter: drop-shadow(0 0 8px rgba(255, 70, 85, 0.4));
+            width: 2.8rem;
+            height: 2.8rem;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 70, 85, 0.5));
           "
-        >
-          <path d="M12 2L2 22h20L12 2z" />
-          <path d="M12 8l-4 8h8l-4-8z" fill="var(--color-primary)" />
-        </svg>
+        />
         <div class="logo-text">
           <h1>APEX LEGENDS</h1>
           <p class="subtitle">PACKS CALCULATOR (2026)</p>
