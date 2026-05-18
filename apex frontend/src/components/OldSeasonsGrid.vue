@@ -17,7 +17,7 @@ const getOldSeason = (seasonNo: number | string): OldSeason => {
 
 const handleOldToggle = (seasonNo: number, type: 'played' | 'premium' | 'treasure') => {
   if (!SEASON_MAPPINGS[seasonNo]) {
-    addToast(`ยังไม่มีข้อมูลทางการสำหรับ Season ${seasonNo} ระบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`, "warning");
+    addToast(`ยังไม่มีข้อมูลทางการสำหรับ Season ${seasonNo}`, "warning");
     return;
   }
 
