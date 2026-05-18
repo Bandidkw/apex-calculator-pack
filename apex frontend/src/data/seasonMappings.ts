@@ -73,4 +73,68 @@ export const SEASON_MAPPINGS: Record<number, SeasonPackMapping> = {
     premiumTrack: [3, 17, 35, 61, 76, 77, 98],
     maxLevel: 110,
   },
+  12: {
+    freeTrack: [7, 19, 33, 45, 73, 81, 97],
+    premiumTrack: [3, 63, 71, 78, 83, 86, 94],
+    maxLevel: 110,
+  },
+  13: {
+    freeTrack: [11, 27, 35, 51, 75, 97],
+    premiumTrack: [3, 12, 36, 43, 67, 78, 86, 94],
+    maxLevel: 110,
+  },
+  14: {
+    freeTrack: [7, 24, 49, 60, 67, 78, 86],
+    premiumTrack: [3, 7, 27, 59, 84, 94, 98],
+    maxLevel: 110,
+  },
+  15: {
+    freeTrack: [7, 22, 46, 61, 69, 78, 86],
+    premiumTrack: [5, 7, 58, 63, 84, 88, 99],
+    maxLevel: 110,
+  },
+  16: {
+    freeTrack: [7, 24, 38, 60, 66, 78, 86],
+    premiumTrack: [5, 7, 58, 63, 84, 87, 99],
+    maxLevel: 110,
+  },
+  17: {
+    freeTrack: [7, 21, 39, 61, 66, 77, 85],
+    premiumTrack: [5, 7, 58, 63, 84, 87, 99],
+    maxLevel: 110,
+  },
+  18: {
+    freeTrack: [7, 21, 39, 61, 66, 77, 85],
+    premiumTrack: [5, 7, 55, 79, 84, 92, 99],
+    maxLevel: 110,
+  },
+  19: {
+    freeTrack: [7, 21, 39, 61, 66, 77, 85],
+    premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+    maxLevel: 110,
+  },
+  20: {
+    freeTrack: [7, 13, 16, 21, 26, 33, 40],
+    premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+    maxLevel: 110,
+  },
+  21: {
+    freeTrack: [7, 21, 39, 61, 66, 77, 84],
+    premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+    maxLevel: 110,
+  },
+  22: {
+    // Split 1
+    split1: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+    // Split 2
+    split2: {
+      freeTrack: [7, 21, 39, 61, 66, 77, 84],
+      premiumTrack: [5, 7, 59, 63, 84, 87, 99],
+      maxLevel: 100,
+    },
+  },
 };

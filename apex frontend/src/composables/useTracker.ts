@@ -22,6 +22,8 @@ export interface NewSeason {
 export interface TrackerState {
   playerLevel: number;
   miscPacks: number;
+  hasHeirloomBefore: boolean;
+  lastHeirloomPackCount: number;
   seasonsData: {
     [key: string]: OldSeason | NewSeason;
   };
@@ -110,6 +112,8 @@ function createDefaultState(): TrackerState {
   return {
     playerLevel: 1,
     miscPacks: 0,
+    hasHeirloomBefore: false,
+    lastHeirloomPackCount: 0,
     seasonsData,
   };
 }
@@ -147,6 +151,14 @@ const loadState = (): TrackerState => {
           typeof parsed.miscPacks === "number"
             ? parsed.miscPacks
             : defaultState.miscPacks,
+        hasHeirloomBefore:
+          typeof parsed.hasHeirloomBefore === "boolean"
+            ? parsed.hasHeirloomBefore
+            : defaultState.hasHeirloomBefore,
+        lastHeirloomPackCount:
+          typeof parsed.lastHeirloomPackCount === "number"
+            ? parsed.lastHeirloomPackCount
+            : defaultState.lastHeirloomPackCount,
         seasonsData: mergedSeasons,
       };
     }
@@ -257,13 +269,19 @@ export function useTracker() {
 
   const guaranteeProgress = computed(() => {
     const total = totalPacks.value;
+    const basePacks = state.hasHeirloomBefore
+      ? Math.max(0, total - state.lastHeirloomPackCount)
+      : total;
+
     const maxGuarantee = 500;
-    const percentage = Math.min((total / maxGuarantee) * 100, 100);
-    const remaining = Math.max(maxGuarantee - total, 0);
+    const percentage = Math.min((basePacks / maxGuarantee) * 100, 100);
+    const remaining = Math.max(maxGuarantee - basePacks, 0);
+
     return {
       percentage,
       remaining,
-      reached: total >= maxGuarantee,
+      reached: basePacks >= maxGuarantee,
+      basePacks,
     };
   });
 
@@ -272,6 +290,8 @@ export function useTracker() {
     const defaults = createDefaultState();
     state.playerLevel = defaults.playerLevel;
     state.miscPacks = defaults.miscPacks;
+    state.hasHeirloomBefore = defaults.hasHeirloomBefore;
+    state.lastHeirloomPackCount = defaults.lastHeirloomPackCount;
     Object.keys(defaults.seasonsData).forEach((key) => {
       state.seasonsData[key] = defaults.seasonsData[key];
     });

@@ -17,18 +17,27 @@ const { state, levelPacks, seasonsPacks, totalPacks, guaranteeProgress } =
             >✨ Heirloom Shards Guaranteed! ✨</span
           >
           <span class="glow-text-red" v-else
-            >การเดินทางสู่ Heirloom Shards (500 กล่อง)</span
+            >การันตี Heirloom Shards (500 กล่อง)</span
           >
         </h2>
         <p class="description-muted">
-          ระบบคำนวณและประมวลผลข้อมูลบนเครื่องของผู้ใช้ 100% ข้อมูลบันทึกอัตโนมัติ
+          ระบบคำนวณและประมวลผลข้อมูลบนเครื่องของผู้ใช้ 100%
+          ข้อมูลบันทึกอัตโนมัติ
         </p>
       </div>
-      <div class="total-badge">
-        <span class="label">กล่องสะสมทั้งหมด</span>
-        <span class="number" :class="{ 'text-gold': guaranteeProgress.reached }"
-          >{{ totalPacks }} <span class="max-val">/ 500</span></span
-        >
+      <div class="total-badge" :style="state.hasHeirloomBefore ? 'display: flex; gap: 1rem; align-items: center; text-align: left;' : ''">
+        <div :style="state.hasHeirloomBefore ? 'text-align: right;' : ''">
+          <span class="label">{{ state.hasHeirloomBefore ? 'นับรอบการันตีถัดไป' : 'กล่องสะสมทั้งหมด' }}</span>
+          <span class="number" :class="{ 'text-gold': guaranteeProgress.reached }"
+            >{{ guaranteeProgress.basePacks }} <span class="max-val">/ 500</span></span
+          >
+        </div>
+        <div v-if="state.hasHeirloomBefore" style="border-left: 1px solid var(--border-color); padding-left: 1rem; text-align: left;">
+          <span class="label">สะสมรวมทั้งหมด</span>
+          <span class="number" style="color: var(--text-secondary); font-size: 1.5rem;"
+            >{{ totalPacks }}</span
+          >
+        </div>
       </div>
     </div>
 
