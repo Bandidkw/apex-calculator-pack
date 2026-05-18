@@ -146,7 +146,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  Ultimate+
+                  Ultimate / Ultimate+
                 </button>
               </div>
 
@@ -272,7 +272,7 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
                     }
                   "
                 >
-                  Ultimate+
+                  Ultimate / Ultimate+
                 </button>
               </div>
 

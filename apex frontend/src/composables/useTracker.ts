@@ -274,13 +274,13 @@ export function useTracker() {
                 (lvl) => bpLevel >= lvl,
               ).length;
             }
-            if (newData.s1UltimatePlus) total += 7; // Ultimate+ extra packs
+            if (newData.s1UltimatePlus) total += 8; // Ultimate / Ultimate+ extra 8 instant packs
           } else {
             total += Math.floor((bpLevel / 60) * 7); // Free Split 1
             if (newData.s1UltimatePlus) {
-              total += Math.floor((bpLevel / 60) * 14); // Ultimate+
+              total += Math.floor((bpLevel / 60) * 7) + 8; // Ultimate / Ultimate+ (Free 7 + Premium 7 + 8 instant)
             } else if (newData.s1Premium) {
-              total += Math.floor((bpLevel / 60) * 7); // Premium
+              total += Math.floor((bpLevel / 60) * 7); // Premium (Free 7 + Premium 7)
             }
           }
         }
@@ -296,13 +296,13 @@ export function useTracker() {
                 (lvl) => bpLevel >= lvl,
               ).length;
             }
-            if (newData.s2UltimatePlus) total += 7; // Ultimate+ extra packs
+            if (newData.s2UltimatePlus) total += 8; // Ultimate / Ultimate+ extra 8 instant packs
           } else {
             total += Math.floor((bpLevel / 60) * 7); // Free Split 2
             if (newData.s2UltimatePlus) {
-              total += Math.floor((bpLevel / 60) * 14); // Ultimate+
+              total += Math.floor((bpLevel / 60) * 7) + 8; // Ultimate / Ultimate+ (Free 7 + Premium 7 + 8 instant)
             } else if (newData.s2Premium) {
-              total += Math.floor((bpLevel / 60) * 7); // Premium
+              total += Math.floor((bpLevel / 60) * 7); // Premium (Free 7 + Premium 7)
             }
           }
         }
