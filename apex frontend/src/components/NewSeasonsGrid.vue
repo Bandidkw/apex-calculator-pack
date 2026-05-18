@@ -451,12 +451,14 @@ const getNewSeason = (seasonNo: number | string): NewSeason => {
 
 .split-header {
   font-family: var(--font-gaming);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 0.25rem;
-  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 70, 85, 0.3);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 0 8px rgba(255, 70, 85, 0.4);
 }
 
 .split-options-grid {
