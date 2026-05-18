@@ -127,7 +127,7 @@ const adjustHeirloomPack = (amount: number) => {
         </div>
 
         <p class="input-tip" style="margin-top: 0.25rem">
-          คำนวณอัตโนมัติตามระดับ Prestige 1 - 3 (เลเวลสะสมเต็มจะได้ 349 กล่อง)
+          คำนวณอัตโนมัติตามระดับ Prestige 1 - 3 (เลเวลสะสมเต็มจะได้ 538 กล่อง)
         </p>
       </div>
 
@@ -293,13 +293,20 @@ const adjustHeirloomPack = (amount: number) => {
         </svg>
         กฎการได้รับกล่องจากเลเวล (Player Level Rules):
       </h4>
-      <ul>
+      <ul style="display: flex; flex-direction: column; gap: 0.4rem;">
         <li><strong>เลเวล 2 - 20:</strong> ได้ 1 กล่องต่อ 1 เลเวล (รวม 19 กล่อง)</li>
         <li><strong>เลเวล 22 - 300:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (รวม 140 กล่อง)</li>
         <li><strong>เลเวล 305 - 500:</strong> ได้ 1 กล่องทุกๆ 5 เลเวล (รวม 40 กล่อง)</li>
-        <li><strong>เลเวล 501 - 1000:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (รวม 50 กล่อง)</li>
-        <li><strong>เลเวล 1001 - 1500:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (รวม 50 กล่อง)</li>
-        <li><strong>เลเวล 1501 - 2000:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (รวม 50 กล่อง)</li>
+        <li style="border-top: 1px dashed rgba(255, 255, 255, 0.08); padding-top: 0.4rem; margin-top: 0.2rem;">
+          <strong>เลเวล Prestige (501 - 2000):</strong> รอบละ 500 เลเวล (รีเซ็ตทุกขั้นสะสม 113 × 3 = 339 กล่อง)
+          <ul style="margin-left: 1rem; margin-top: 0.25rem; list-style: circle; display: flex; flex-direction: column; gap: 0.2rem;">
+            <li style="font-size: 0.72rem;"><strong>เลเวล 1 - 100 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10 กล่อง)</li>
+            <li style="font-size: 0.72rem;"><strong>เลเวล 101 - 200 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12 กล่อง)</li>
+            <li style="font-size: 0.72rem;"><strong>เลเวล 201 - 300 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16 กล่อง)</li>
+            <li style="font-size: 0.72rem;"><strong>เลเวล 301 - 400 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25 กล่อง)</li>
+            <li style="font-size: 0.72rem;"><strong>เลเวล 401 - 500 ของขั้น:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50 กล่อง)</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

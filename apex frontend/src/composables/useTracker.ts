@@ -51,6 +51,42 @@ export const getSeasonMaxPacks = (
   return { free: 5, premium: 7 };
 };
 
+// Helper function to calculate packs for a single Prestige tier of 500 levels (Tiers 2-4)
+export function calculatePrestigeTierPacks(tierLevel: number): number {
+  if (tierLevel < 1) return 0;
+  let packs = 0;
+
+  // Level 1 - 100: one every 10 levels (max 10 packs)
+  const lvl100 = Math.min(tierLevel, 100);
+  packs += Math.floor(lvl100 / 10);
+
+  // Level 101 - 200: one every 8 levels (max 12 packs)
+  if (tierLevel > 100) {
+    const lvl200 = Math.min(tierLevel, 200);
+    packs += Math.floor((lvl200 - 100) / 8);
+  }
+
+  // Level 201 - 300: one every 6 levels (max 16 packs)
+  if (tierLevel > 200) {
+    const lvl300 = Math.min(tierLevel, 300);
+    packs += Math.floor((lvl300 - 200) / 6);
+  }
+
+  // Level 301 - 400: one every 4 levels (max 25 packs)
+  if (tierLevel > 300) {
+    const lvl400 = Math.min(tierLevel, 400);
+    packs += Math.floor((lvl400 - 300) / 4);
+  }
+
+  // Level 401 - 500: one every 2 levels (max 50 packs)
+  if (tierLevel > 400) {
+    const lvl500 = Math.min(tierLevel, 500);
+    packs += Math.floor((lvl500 - 400) / 2);
+  }
+
+  return packs;
+}
+
 // Helper function to calculate packs from player level (up to level 2000 in 2026)
 export function calculateLevelPacks(level: number): number {
   if (level < 1) return 0;
@@ -74,22 +110,22 @@ export function calculateLevelPacks(level: number): number {
     packs += Math.floor((lvl500 - 300) / 5);
   }
 
-  // Level 501 - 1000 (Prestige 1): 1 pack every 10 levels (total 50 packs)
+  // Level 501 - 1000 (Prestige 1): Tiers 2-4 progressive scaling
   if (level > 500) {
     const lvl1000 = Math.min(level, 1000);
-    packs += Math.floor((lvl1000 - 500) / 10);
+    packs += calculatePrestigeTierPacks(lvl1000 - 500);
   }
 
-  // Level 1001 - 1500 (Prestige 2): 1 pack every 10 levels (total 50 packs)
+  // Level 1001 - 1500 (Prestige 2): Tiers 2-4 progressive scaling
   if (level > 1000) {
     const lvl1500 = Math.min(level, 1500);
-    packs += Math.floor((lvl1500 - 1000) / 10);
+    packs += calculatePrestigeTierPacks(lvl1500 - 1000);
   }
 
-  // Level 1501 - 2000 (Prestige 3): 1 pack every 10 levels (total 50 packs)
+  // Level 1501 - 2000 (Prestige 3): Tiers 2-4 progressive scaling
   if (level > 1500) {
     const lvl2000 = Math.min(level, 2000);
-    packs += Math.floor((lvl2000 - 1500) / 10);
+    packs += calculatePrestigeTierPacks(lvl2000 - 1500);
   }
 
   return packs;
