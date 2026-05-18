@@ -369,8 +369,12 @@ const adjustHeirloomPack = (amount: number) => {
     </div>
 
     <!-- Informational Rule Trigger (Opens Modal Popup) -->
-    <div class="info-rules-card-trigger" @click="showLevelRulesModal = true" style="margin-top: 1rem;">
-      <div style="display: flex; align-items: center; gap: 0.35rem;">
+    <div
+      class="info-rules-card-trigger"
+      @click="showLevelRulesModal = true"
+      style="margin-top: 1rem"
+    >
+      <div style="display: flex; align-items: center; gap: 0.35rem">
         <svg
           fill="none"
           stroke="var(--color-primary)"
@@ -384,7 +388,16 @@ const adjustHeirloomPack = (amount: number) => {
             d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
           ></path>
         </svg>
-        <span style="font-size: 0.78rem; font-weight: 800; letter-spacing: 0.02em; color: var(--color-primary); text-shadow: 0 0 8px rgba(255, 70, 85, 0.25);">กฎการได้รับกล่องจากเลเวล (Rules)</span>
+        <span
+          style="
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: var(--color-primary);
+            text-shadow: 0 0 8px rgba(255, 70, 85, 0.25);
+          "
+          >กฎการได้รับกล่องจากเลเวล (Rules)</span
+        >
       </div>
       <!-- Outward Pop SVG Icon -->
       <svg
@@ -394,10 +407,17 @@ const adjustHeirloomPack = (amount: number) => {
         stroke-width="2.5"
         stroke-linecap="round"
         stroke-linejoin="round"
-        style="width: 0.85rem; height: 0.85rem; color: var(--text-muted); transition: color var(--transition-fast);"
+        style="
+          width: 0.85rem;
+          height: 0.85rem;
+          color: var(--text-muted);
+          transition: color var(--transition-fast);
+        "
         class="trigger-icon"
       >
-        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <path
+          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+        ></path>
         <polyline points="15 3 21 3 21 9"></polyline>
         <line x1="10" y1="14" x2="21" y2="3"></line>
       </svg>
@@ -405,7 +425,11 @@ const adjustHeirloomPack = (amount: number) => {
 
     <!-- Premium Modal Popup for Level Rules -->
     <transition name="fade">
-      <div v-if="showLevelRulesModal" class="modal-backdrop" @click.self="showLevelRulesModal = false">
+      <div
+        v-if="showLevelRulesModal"
+        class="modal-backdrop"
+        @click.self="showLevelRulesModal = false"
+      >
         <transition name="zoom">
           <div class="modal-card">
             <!-- Modal Header -->
@@ -424,10 +448,20 @@ const adjustHeirloomPack = (amount: number) => {
                     d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                   ></path>
                 </svg>
-                กฎการได้รับกล่องสุ่มจากเลเวล
+                กฎการได้รับกล่องจากเลเวล
               </h3>
-              <button class="modal-close-btn" @click="showLevelRulesModal = false">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <button
+                class="modal-close-btn"
+                @click="showLevelRulesModal = false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -437,49 +471,85 @@ const adjustHeirloomPack = (amount: number) => {
             <!-- Modal Content -->
             <div class="modal-content">
               <p class="modal-intro">
-                การได้รับกล่องสุ่ม Apex Packs จากการอัปเลเวลตัวละครจะมีการแบ่งอัตราส่วนตามช่วงระดับเลเวลสะสมดังนี้:
+                การได้รับกล่องสุ่ม Apex Packs
+                จากการอัปเลเวลตัวละครจะมีการแบ่งอัตราส่วนตามช่วงระดับเลเวลสะสมดังนี้:
               </p>
-              
+
               <div class="rules-list-container">
                 <div class="rule-item-card">
                   <div class="rule-badge">เลเวล 2 - 20</div>
-                  <div class="rule-desc">ได้รับ <strong>1 กล่องต่อ 1 เลเวล</strong> (รวม 19 กล่อง)</div>
+                  <div class="rule-desc">
+                    ได้รับ <strong>1 กล่องต่อ 1 เลเวล</strong> (รวม 19 กล่อง)
+                  </div>
                 </div>
-                
+
                 <div class="rule-item-card">
                   <div class="rule-badge">เลเวล 22 - 300</div>
-                  <div class="rule-desc">ได้รับ <strong>1 กล่องทุกๆ 2 เลเวล</strong> (รวม 140 กล่อง)</div>
+                  <div class="rule-desc">
+                    ได้รับ <strong>1 กล่องทุกๆ 2 เลเวล</strong> (รวม 140 กล่อง)
+                  </div>
                 </div>
 
                 <div class="rule-item-card">
                   <div class="rule-badge">เลเวล 305 - 500</div>
-                  <div class="rule-desc">ได้รับ <strong>1 กล่องทุกๆ 5 เลเวล</strong> (รวม 40 กล่อง)</div>
+                  <div class="rule-desc">
+                    ได้รับ <strong>1 กล่องทุกๆ 5 เลเวล</strong> (รวม 40 กล่อง)
+                  </div>
                 </div>
 
                 <div class="rule-item-card prestige-card">
-                  <div class="rule-badge prestige-badge">เลเวล จุติใหม่ (Prestige 1 - 3)</div>
+                  <div class="rule-badge prestige-badge">
+                    เลเวล จุติใหม่ (Prestige 1 - 3)
+                  </div>
                   <div class="rule-desc">
-                    เมื่อผู้เล่นมีระดับเลเวลถึง 500 จะมีระบบจุติ (เลเวล 501 - 2000) 
-                    โดยแชร์รอบละ 500 เลเวล ได้รับสูงสุด **103 กล่องต่อรอบการจุติ** ดังนี้:
+                    เมื่อผู้เล่นมีระดับเลเวลถึง 500 จะมีระบบจุติ (เลเวล 501 -
+                    2000) โดยแชร์รอบละ 500 เลเวล ได้รับสูงสุด **103
+                    กล่องต่อรอบการจุติ** ดังนี้:
                     <ul class="prestige-subrules">
-                      <li><strong>เลเวล 1 - 100:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10 กล่อง)</li>
-                      <li><strong>เลเวล 101 - 200:</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12 กล่อง)</li>
-                      <li><strong>เลเวล 201 - 300:</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16 กล่อง)</li>
-                      <li><strong>เลเวล 301 - 400:</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25 กล่อง)</li>
-                      <li><strong>เลเวล 401 - 500:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50 กล่อง)</li>
+                      <li>
+                        <strong>เลเวล 1 - 100:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล
+                        (10 กล่อง)
+                      </li>
+                      <li>
+                        <strong>เลเวล 101 - 200:</strong> ได้ 1 กล่องทุกๆ 8
+                        เลเวล (12 กล่อง)
+                      </li>
+                      <li>
+                        <strong>เลเวล 201 - 300:</strong> ได้ 1 กล่องทุกๆ 6
+                        เลเวล (16 กล่อง)
+                      </li>
+                      <li>
+                        <strong>เลเวล 301 - 400:</strong> ได้ 1 กล่องทุกๆ 4
+                        เลเวล (25 กล่อง)
+                      </li>
+                      <li>
+                        <strong>เลเวล 401 - 500:</strong> ได้ 1 กล่องทุกๆ 2
+                        เลเวล (50 กล่อง)
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
 
               <div class="modal-summary-box">
-                <span class="highlight-gold">🏆 หากจุติระดับสะสมเลเวลเต็ม 2000 (Prestige 3 Max) จะได้รับรวมทั้งหมด 538 กล่อง!</span>
+                <span class="highlight-gold"
+                  >🏆 หากจุติระดับสะสมเลเวลเต็ม 2000 (Prestige 3 Max)
+                  จะได้รับรวมทั้งหมด 538 กล่อง!</span
+                >
               </div>
             </div>
 
             <!-- Modal Footer -->
             <div class="modal-footer">
-              <button class="btn btn-danger" @click="showLevelRulesModal = false" style="padding: 0.5rem 1.5rem; font-weight: 700; border-radius: 6px;">
+              <button
+                class="btn btn-danger"
+                @click="showLevelRulesModal = false"
+                style="
+                  padding: 0.5rem 1.5rem;
+                  font-weight: 700;
+                  border-radius: 6px;
+                "
+              >
                 ปิดหน้าต่าง
               </button>
             </div>
@@ -734,7 +804,9 @@ const adjustHeirloomPack = (amount: number) => {
 .modal-card {
   background: rgba(18, 20, 29, 0.95);
   border: 1.5px solid var(--border-color);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 70, 85, 0.15);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 70, 85, 0.15);
   border-radius: 12px;
   width: 100%;
   max-width: 580px;
@@ -756,7 +828,9 @@ const adjustHeirloomPack = (amount: number) => {
 
 .zoom-enter-active,
 .zoom-leave-active {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease;
 }
 .zoom-enter-from,
 .zoom-leave-to {
