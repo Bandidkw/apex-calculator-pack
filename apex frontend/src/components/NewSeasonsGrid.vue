@@ -5,9 +5,11 @@ import {
   isOldSeason,
   type NewSeason,
 } from "../composables/useTracker";
+import { useToast } from "../composables/useToast";
 import { SEASON_MAPPINGS } from "../data/seasonMappings";
 
 const { state, setPremiumAllNew } = useTracker();
+const { addToast } = useToast();
 
 const getNewSeason = (seasonNo: number | string): NewSeason => {
   return state.seasonsData[seasonNo.toString()] as NewSeason;
@@ -18,7 +20,7 @@ const handleSplitSelection = (season: number, split: 1 | 2, type: 'none' | 'no-p
   const hasData = split === 1 ? !!mapping?.split1 : !!mapping?.split2;
 
   if (type !== 'none' && !hasData) {
-    alert(`⚠️ ยังไม่มีข้อมูลทางการสำหรับ Season ${season} Split ${split}\nระะบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`);
+    addToast(`ยังไม่มีข้อมูลทางการสำหรับ Season ${season} Split ${split} ระบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`, "warning");
     return;
   }
 

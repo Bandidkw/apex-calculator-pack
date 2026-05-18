@@ -6,6 +6,7 @@ import PlayerInfo from "./components/PlayerInfo.vue";
 import OldSeasonsGrid from "./components/OldSeasonsGrid.vue";
 
 import NewSeasonsGrid from "./components/NewSeasonsGrid.vue";
+import ToastContainer from "./components/ToastContainer.vue";
 
 const { resetAll } = useTracker();
 
@@ -177,6 +178,9 @@ onUnmounted(() => {
         </svg>
       </button>
     </transition>
+
+    <!-- Global Toast Notifications -->
+    <ToastContainer />
   </div>
 </template>
 

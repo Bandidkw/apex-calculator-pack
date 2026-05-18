@@ -5,9 +5,11 @@ import {
   isOldSeason,
   type OldSeason,
 } from "../composables/useTracker";
+import { useToast } from "../composables/useToast";
 import { SEASON_MAPPINGS } from "../data/seasonMappings";
 
 const { state, setPlayedAllOld, setPremiumAllOld, setTreasureAllOld } = useTracker();
+const { addToast } = useToast();
 
 const getOldSeason = (seasonNo: number | string): OldSeason => {
   return state.seasonsData[seasonNo.toString()] as OldSeason;
@@ -15,7 +17,7 @@ const getOldSeason = (seasonNo: number | string): OldSeason => {
 
 const handleOldToggle = (seasonNo: number, type: 'played' | 'premium' | 'treasure') => {
   if (!SEASON_MAPPINGS[seasonNo]) {
-    alert(`⚠️ ยังไม่มีข้อมูลทางการสำหรับ Season ${seasonNo}\nระบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`);
+    addToast(`ยังไม่มีข้อมูลทางการสำหรับ Season ${seasonNo} ระบบจึงป้องกันไม่ให้เลือกเพื่อป้องกันการคำนวณผิดพลาดครับ`, "warning");
     return;
   }
 
