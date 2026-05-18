@@ -4,7 +4,7 @@ import { useTracker } from "../composables/useTracker";
 
 const { state, totalPacks } = useTracker();
 
-const showLevelRules = ref(false);
+const showLevelRulesModal = ref(false);
 
 // Local validation for player level
 const onLevelInput = (event: Event) => {
@@ -368,107 +368,125 @@ const adjustHeirloomPack = (amount: number) => {
       </div>
     </div>
 
-    <!-- Informational Rule Card (Collapsible) -->
-    <div class="info-rules-card" :class="{ 'is-collapsed': !showLevelRules }">
-      <h4
-        @click="showLevelRules = !showLevelRules"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 0.9rem;
-          color: var(--text-primary);
-          cursor: pointer;
-          user-select: none;
-          margin-bottom: 0;
-        "
-        :style="{ marginBottom: showLevelRules ? '0.75rem' : '0' }"
-      >
-        <div style="display: flex; align-items: center; gap: 0.35rem;">
-          <svg
-            fill="none"
-            stroke="var(--color-primary)"
-            viewBox="0 0 24 24"
-            style="width: 1rem; height: 1rem"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-            ></path>
-          </svg>
-          <span style="font-size: 0.78rem; font-weight: 800; letter-spacing: 0.02em; color: var(--color-primary); text-shadow: 0 0 8px rgba(255, 70, 85, 0.25);">กฎการได้รับกล่องจากเลเวล (Rules)</span>
-        </div>
+    <!-- Informational Rule Trigger (Opens Modal Popup) -->
+    <div class="info-rules-card-trigger" @click="showLevelRulesModal = true" style="margin-top: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.35rem;">
         <svg
-          viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          style="width: 0.9rem; height: 0.9rem; transition: transform var(--transition-normal); color: var(--text-muted);"
-          :style="{ transform: showLevelRules ? 'rotate(180deg)' : 'rotate(0deg)' }"
+          stroke="var(--color-primary)"
+          viewBox="0 0 24 24"
+          style="width: 1rem; height: 1rem"
         >
-          <polyline points="6 9 12 15 18 9"></polyline>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+          ></path>
         </svg>
-      </h4>
-      <transition name="fade-slide">
-        <ul v-if="showLevelRules" style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.5rem;">
-          <li>
-            <strong>เลเวล 2 - 20:</strong> ได้ 1 กล่องต่อ 1 เลเวล (รวม 19 กล่อง)
-          </li>
-          <li>
-            <strong>เลเวล 22 - 300:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (รวม 140
-            กล่อง)
-          </li>
-          <li>
-            <strong>เลเวล 305 - 500:</strong> ได้ 1 กล่องทุกๆ 5 เลเวล (รวม 40
-            กล่อง)
-          </li>
-          <li
-            style="
-              border-top: 1px dashed rgba(255, 255, 255, 0.08);
-              padding-top: 0.4rem;
-              margin-top: 0.2rem;
-            "
-          >
-            <strong>เลเวล จุติ (501 - 2000):</strong> รอบละ 500 เลเวล
-            <ul
-              style="
-                margin-left: 1rem;
-                margin-top: 0.25rem;
-                list-style: circle;
-                display: flex;
-                flex-direction: column;
-                gap: 0.2rem;
-              "
-            >
-              <li style="font-size: 0.72rem">
-                <strong>เลเวล 1 - 100 :</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10
-                กล่อง)
-              </li>
-              <li style="font-size: 0.72rem">
-                <strong>เลเวล 101 - 200 :</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12
-                กล่อง)
-              </li>
-              <li style="font-size: 0.72rem">
-                <strong>เลเวล 201 - 300 :</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16
-                กล่อง)
-              </li>
-              <li style="font-size: 0.72rem">
-                <strong>เลเวล 301 - 400 :</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25
-                กล่อง)
-              </li>
-              <li style="font-size: 0.72rem">
-                <strong>เลเวล 401 - 500 :</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50
-                กล่อง)
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </transition>
+        <span style="font-size: 0.78rem; font-weight: 800; letter-spacing: 0.02em; color: var(--color-primary); text-shadow: 0 0 8px rgba(255, 70, 85, 0.25);">กฎการได้รับกล่องจากเลเวล (Rules)</span>
+      </div>
+      <!-- Outward Pop SVG Icon -->
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        style="width: 0.85rem; height: 0.85rem; color: var(--text-muted); transition: color var(--transition-fast);"
+        class="trigger-icon"
+      >
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
     </div>
+
+    <!-- Premium Modal Popup for Level Rules -->
+    <transition name="fade">
+      <div v-if="showLevelRulesModal" class="modal-backdrop" @click.self="showLevelRulesModal = false">
+        <transition name="zoom">
+          <div class="modal-card">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h3 class="modal-title">
+                <svg
+                  fill="none"
+                  stroke="var(--color-primary)"
+                  viewBox="0 0 24 24"
+                  style="width: 1.2rem; height: 1.2rem"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  ></path>
+                </svg>
+                กฎการได้รับกล่องสุ่มจากเลเวล
+              </h3>
+              <button class="modal-close-btn" @click="showLevelRulesModal = false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="modal-content">
+              <p class="modal-intro">
+                การได้รับกล่องสุ่ม Apex Packs จากการอัปเลเวลตัวละครจะมีการแบ่งอัตราส่วนตามช่วงระดับเลเวลสะสมดังนี้:
+              </p>
+              
+              <div class="rules-list-container">
+                <div class="rule-item-card">
+                  <div class="rule-badge">เลเวล 2 - 20</div>
+                  <div class="rule-desc">ได้รับ <strong>1 กล่องต่อ 1 เลเวล</strong> (รวม 19 กล่อง)</div>
+                </div>
+                
+                <div class="rule-item-card">
+                  <div class="rule-badge">เลเวล 22 - 300</div>
+                  <div class="rule-desc">ได้รับ <strong>1 กล่องทุกๆ 2 เลเวล</strong> (รวม 140 กล่อง)</div>
+                </div>
+
+                <div class="rule-item-card">
+                  <div class="rule-badge">เลเวล 305 - 500</div>
+                  <div class="rule-desc">ได้รับ <strong>1 กล่องทุกๆ 5 เลเวล</strong> (รวม 40 กล่อง)</div>
+                </div>
+
+                <div class="rule-item-card prestige-card">
+                  <div class="rule-badge prestige-badge">เลเวล จุติใหม่ (Prestige 1 - 3)</div>
+                  <div class="rule-desc">
+                    เมื่อผู้เล่นมีระดับเลเวลถึง 500 จะมีระบบจุติ (เลเวล 501 - 2000) 
+                    โดยแชร์รอบละ 500 เลเวล ได้รับสูงสุด **103 กล่องต่อรอบการจุติ** ดังนี้:
+                    <ul class="prestige-subrules">
+                      <li><strong>เลเวล 1 - 100:</strong> ได้ 1 กล่องทุกๆ 10 เลเวล (10 กล่อง)</li>
+                      <li><strong>เลเวล 101 - 200:</strong> ได้ 1 กล่องทุกๆ 8 เลเวล (12 กล่อง)</li>
+                      <li><strong>เลเวล 201 - 300:</strong> ได้ 1 กล่องทุกๆ 6 เลเวล (16 กล่อง)</li>
+                      <li><strong>เลเวล 301 - 400:</strong> ได้ 1 กล่องทุกๆ 4 เลเวล (25 กล่อง)</li>
+                      <li><strong>เลเวล 401 - 500:</strong> ได้ 1 กล่องทุกๆ 2 เลเวล (50 กล่อง)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-summary-box">
+                <span class="highlight-gold">🏆 หากจุติระดับสะสมเลเวลเต็ม 2000 (Prestige 3 Max) จะได้รับรวมทั้งหมด 538 กล่อง!</span>
+              </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button class="btn btn-danger" @click="showLevelRulesModal = false" style="padding: 0.5rem 1.5rem; font-weight: 700; border-radius: 6px;">
+                ปิดหน้าต่าง
+              </button>
+            </div>
+          </div>
+        </transition>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -672,42 +690,222 @@ const adjustHeirloomPack = (amount: number) => {
   color: #fca5a5;
 }
 
-.info-rules-card {
+/* Informational Rule Trigger */
+.info-rules-card-trigger {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
   transition: all var(--transition-normal);
 }
 
-.info-rules-card:hover {
-  border-color: rgba(255, 70, 85, 0.25);
-  background: rgba(255, 70, 85, 0.03);
+.info-rules-card-trigger:hover {
+  border-color: rgba(255, 70, 85, 0.35);
+  background: rgba(255, 70, 85, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 70, 85, 0.08);
 }
 
-.info-rules-card h4 {
-  font-size: 0.8rem;
+.info-rules-card-trigger:hover .trigger-icon {
+  color: var(--color-primary) !important;
+}
+
+/* Premium Modal Layout Styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(8, 9, 13, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  background: rgba(18, 20, 29, 0.95);
+  border: 1.5px solid var(--border-color);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 70, 85, 0.15);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Modal Animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.zoom-enter-active,
+.zoom-leave-active {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+.zoom-enter-from,
+.zoom-leave-to {
+  transform: scale(0.92);
+  opacity: 0;
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-gaming);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(255, 70, 85, 0.3);
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.modal-close-btn:hover {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.modal-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-intro {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+}
+
+.rules-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rule-item-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rule-badge {
+  font-family: var(--font-gaming);
+  font-size: 0.75rem;
+  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
 }
 
-.info-rules-card ul {
+.rule-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.rule-desc strong {
+  color: #ffffff;
+}
+
+.prestige-card {
+  background: rgba(255, 176, 31, 0.02);
+  border-color: rgba(255, 176, 31, 0.12);
+}
+
+.prestige-badge {
+  color: var(--color-gold);
+}
+
+.prestige-subrules {
   list-style: none;
+  margin-top: 0.5rem;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.info-rules-card li {
+.prestige-subrules li {
   font-size: 0.75rem;
   color: var(--text-secondary);
-  margin-bottom: 0.25rem;
   position: relative;
   padding-left: 0.75rem;
 }
 
-.info-rules-card li::before {
+.prestige-subrules li::before {
   content: "•";
-  color: var(--color-primary);
+  color: var(--color-gold);
   position: absolute;
   left: 0;
+}
+
+.modal-summary-box {
+  background: rgba(255, 176, 31, 0.08);
+  border: 1px dashed rgba(255, 176, 31, 0.25);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.highlight-gold {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Heirloom Shards Field Styles */
